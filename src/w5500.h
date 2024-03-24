@@ -81,7 +81,7 @@ public:
     uint16_t readFrame(uint8_t *buffer, uint16_t bufsize);
 
 
-private:
+//private:
 
     //< SPI interface Read operation in Control Phase
     static const uint8_t AccessModeRead = (0x00 << 2);

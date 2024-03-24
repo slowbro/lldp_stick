@@ -33,6 +33,6 @@ struct TLV_Org {
 
 };
 
-bool processLLDP(uint8_t* data, uint16_t len, PDUInfo* pinfo);
+bool processLLDP(uint8_t *data, uint16_t len, PDUInfo *pinfo);
 
 #endif

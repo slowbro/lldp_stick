@@ -7,6 +7,7 @@
 
 extern Adafruit_SSD1306 display;
 
+void clearBuffer();
 void setBufferLine(int line, char *str);
 void setBufferLine(int line, uint8_t *data, uint8_t start, uint16_t len);
 void printDisplay(uint8_t size);

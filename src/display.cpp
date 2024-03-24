@@ -4,6 +4,13 @@
 char *display_buffer[OLED_LINES];
 int display_line_start[OLED_LINES];
 
+void clearBuffer(){
+    for(int i=0;i<OLED_LINES;i++){
+        memset(display_buffer[i], 0, OLED_MAXLEN);
+        display_buffer[i][OLED_MAXLEN+1] = '\0';
+    }
+}
+
 void setBufferLine(int line, char *str){
   int len = strlen(str);
   display_buffer[line] = (char *)realloc(display_buffer[line], (len + 1) * sizeof(char));
