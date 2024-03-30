@@ -28,33 +28,33 @@ void setBufferLine(int line, uint8_t *data, uint8_t start, uint16_t len) {
 }
 
 void printDisplay(uint8_t text_size){
-  char buf[OLED_LINES][OLED_MAXLEN+1];
+    char buf[OLED_LINES][OLED_MAXLEN+1];
 
-  display.clearDisplay();
-  display.setTextColor(WHITE);
-  display.setCursor(OLED_HORIZONTAL_OFFSET, OLED_VERTICAL_OFFSET);
-  display.setTextSize(text_size);
+    display.clearDisplay();
+    display.setTextColor(WHITE);
+    display.setCursor(OLED_HORIZONTAL_OFFSET, OLED_VERTICAL_OFFSET);
+    display.setTextSize(text_size);
 
-  // chop up the buffer
-  for(int i = 0;i<OLED_LINES;i++){
-    /*memset(&buf[i], 0, OLED_MAXLEN+1);
-    int len = strlen(display_buffer[i]);
-    if(len < OLED_MAXLEN){
-      memcpy(buf[i], &display_buffer[i][display_line_start[i]], len);
-      buf[i][len+1] = '\0';
-    } else {
-      memcpy(buf[i], &display_buffer[i][display_line_start[i]], OLED_MAXLEN);
-      buf[i][OLED_MAXLEN+1] = '\0';
+    // chop up the buffer
+    for(int i = 0;i<OLED_LINES;i++){
+      /*memset(&buf[i], 0, OLED_MAXLEN+1);
+      int len = strlen(display_buffer[i]);
+      if(len < OLED_MAXLEN){
+        memcpy(buf[i], &display_buffer[i][display_line_start[i]], len);
+        buf[i][len+1] = '\0';
+      } else {
+        memcpy(buf[i], &display_buffer[i][display_line_start[i]], OLED_MAXLEN);
+        buf[i][OLED_MAXLEN+1] = '\0';
+      }
+      display.println(buf[i]);
+      free(buf[i]);*/
+      display.println(display_buffer[i]);
     }
-    display.println(buf[i]);
-    free(buf[i]);*/
-    display.println(display_buffer[i]);
-  }
 
-  display.display();
+    display.display();
 }
 
 void printDisplay(){
-  printDisplay(1);
+    printDisplay(1);
 }
 
