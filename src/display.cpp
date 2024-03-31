@@ -27,13 +27,39 @@ void setBufferLine(int line, uint8_t *data, uint8_t start, uint16_t len) {
     display_buffer[line][len] = '\0';
 }
 
+void setBufferLine(int line, char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
+    int prefix_len = strlen(prefix);
+    display_buffer[line] = (char *)realloc(display_buffer[line], (prefix_len + len + 1) * sizeof(char));
+    memcpy(display_buffer[line], prefix, prefix_len);
+    for (uint16_t pos=start,i=prefix_len;pos<start+len;pos++,i++){
+        display_buffer[line][i] = (char)data[pos];
+    }
+    display_buffer[line][prefix_len+len] = '\0';
+}
+
+void setHeader(){
+    display.fillRect(0, 0, display.width(), 7, WHITE);
+    display.setTextSize(1);
+    display.setTextColor(BLACK);
+    display.println("      LLDPStick");
+}
+
+void setFooter(){
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+    display.println("              Menu >");
+}
+
 void printDisplay(uint8_t text_size){
     char buf[OLED_LINES][OLED_MAXLEN+1];
 
     display.clearDisplay();
-    display.setTextColor(WHITE);
     display.setCursor(OLED_HORIZONTAL_OFFSET, OLED_VERTICAL_OFFSET);
+
+    setHeader();
+
     display.setTextSize(text_size);
+    display.setTextColor(WHITE);
 
     // chop up the buffer
     for(int i = 0;i<OLED_LINES;i++){
@@ -50,6 +76,8 @@ void printDisplay(uint8_t text_size){
       free(buf[i]);*/
       display.println(display_buffer[i]);
     }
+
+    setFooter();
 
     display.display();
 }

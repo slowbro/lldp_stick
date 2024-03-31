@@ -21,10 +21,10 @@ void setup(){
     // set up the display
     display.begin(0x3C);
     display.clearDisplay();
-    display.setTextSize(2);
-    display.setCursor(6,OLED_VERTICAL_OFFSET);
+    display.setTextSize(1);
+    display.setCursor(32,16);
     display.setTextColor(WHITE);
-    display.println(F("LLDPStick!"));
+    display.print(F("Booting..."));
     display.display();
 
     Wire.begin();
@@ -41,10 +41,10 @@ void loop(){
     if(w5500.wizphy_getphylink() == 0){
         got_lldp = false;
         clearBuffer();
-        setBufferLine(1, "* No Link *");
+        setBufferLine(0, "* No Link *");
     } else {
         if(!got_lldp) {
-            setBufferLine(1, "Waiting for LLDP..");
+            setBufferLine(0, "Waiting for LLDP..");
         }
 
         uint16_t len = w5500.readFrame(rbuf, sizeof(rbuf));
@@ -54,10 +54,9 @@ void loop(){
             PDUInfo pinfo;
             processLLDP(rbuf, len, &pinfo);
             clearBuffer();
-            setBufferLine(1, rbuf, pinfo.SystemNameStart, pinfo.SystemNameLength);
-            setBufferLine(2, rbuf, pinfo.PortIdStart, pinfo.PortIdLength);
+            setBufferLine(0, "Switch: ", rbuf, pinfo.SystemNameStart, pinfo.SystemNameLength);
+            setBufferLine(1, "Port: ", rbuf, pinfo.PortIdStart, pinfo.PortIdLength);
         }
     }
-
     printDisplay();
 }
