@@ -9,6 +9,7 @@
 #define VDIV 31
 
 #define SSD1306_LCDHEIGHT 32
+#define OLED_MAX_LINES 4
 #define OLED_LINES 2
 #define OLED_MAXLEN 21
 #define OLED_VERTICAL_OFFSET 0
