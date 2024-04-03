@@ -1,13 +1,14 @@
 #include "menu.h"
+#include "sleep.h"
 #include "config.h"
 
 bool menu_active = false;
 uint8_t menu_item_selected = 0;
 int8_t menu_item_top = 0;
 const char *menu_items[] = {
-    "Menu Item 1\0",
+    "BLE Setup\0",
     "Menu Item 2\0",
-    "Menu Item 3\0",
+    "Poweroff\0",
     "Back\0"
 };
 
@@ -57,7 +58,18 @@ void menuLbtn(){
 }
 
 void menuRbtn(){
-    menu_active = false;    
-    menu_item_selected = 0;
-    menu_item_top = 0;
+    // rudimentary item handling until i can get callbacks or something working
+    switch(menu_item_selected){
+        case 0: // BLE Setup
+        case 1: // Menu Item 2
+            break;
+        case 2: //Poweroff
+            sleep();
+            break;
+        case 3: //Back
+            menu_active = false;    
+            menu_item_selected = 0;
+            menu_item_top = 0;
+        break;
+    }
 }

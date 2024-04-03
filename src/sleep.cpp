@@ -21,6 +21,7 @@ void sleep(){
     display.clearDisplay();
     display.display();
     digitalWrite(OLED_RESET, LOW);
+    delay(250);
     nRF5x_lowPower.powerMode(POWER_MODE_OFF);
 }
 

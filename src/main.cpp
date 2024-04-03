@@ -31,17 +31,13 @@ void setup(){
     display.print(F("Booting..."));
     display.display();
 
-    Wire.begin();
-
     digitalWrite(WIZ_RESET, HIGH);
-
+    // give the wiznet a bit to initialize
+    delay(500);
     w5500.begin(mac);
 
     // attach interrupts to both buttons to wake the mcu
     sleep_init_interrupts();
-
-    delay(1000);
-
 }
 
 void loop(){
