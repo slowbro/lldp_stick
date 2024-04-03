@@ -5,6 +5,7 @@
 #include "lldp.h"
 #include "display.h"
 #include "menu.h"
+#include "sleep.h"
 
 byte mac[] = { 0xae, 0x03, 0xf3, 0xc7, 0x08, 0x78 };
 uint8_t rbuf[1500];
@@ -35,6 +36,9 @@ void setup(){
     digitalWrite(WIZ_RESET, HIGH);
 
     w5500.begin(mac);
+
+    // attach interrupts to both buttons to wake the mcu
+    sleep_init_interrupts();
 
     delay(1000);
 
