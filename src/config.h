@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define WIZ_RESET 8
+#define WIZ_RESET 1 // 8 for rev 2
 #define OLED_RESET 7
 #define CS 5
 #define LBTN 22

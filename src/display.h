@@ -6,6 +6,7 @@
 #include <Wire.h>
 
 extern Adafruit_SSD1306 display;
+extern unsigned long last_animation;
 
 void clearBuffer();
 void setBufferLine(int line, char *str);

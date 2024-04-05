@@ -3,6 +3,7 @@
 
 char *display_buffer[OLED_LINES] = {"\0"};
 int display_line_start[OLED_LINES] = {0};
+unsigned long last_animation = 0;
 
 void clearBuffer(){
     for(int i=0;i<OLED_LINES;i++){
@@ -57,18 +58,24 @@ void printDisplay(uint8_t text_size){
 
     // chop up the buffer
     for(int i = 0;i<OLED_LINES;i++){
-      /*memset(&buf[i], 0, OLED_MAXLEN+1);
-      int len = strlen(display_buffer[i]);
-      if(len < OLED_MAXLEN){
-        memcpy(buf[i], &display_buffer[i][display_line_start[i]], len);
-        buf[i][len+1] = '\0';
-      } else {
-        memcpy(buf[i], &display_buffer[i][display_line_start[i]], OLED_MAXLEN);
-        buf[i][OLED_MAXLEN+1] = '\0';
-      }
-      display.println(buf[i]);
-      free(buf[i]);*/
-      display.println(display_buffer[i]);
+        memset(buf[i], '\0', sizeof(buf[i]));
+        int len = strlen(display_buffer[i]);
+        if(len < OLED_MAXLEN){
+            // just display the line as-is
+            memcpy(&buf[i], display_buffer[i], len);
+            buf[i][len] = '\0';
+        } else {
+            // scroll the line slowly to display all text
+            memcpy(&buf[i], &display_buffer[i][display_line_start[i]], OLED_MAXLEN);
+            buf[i][OLED_MAXLEN] = '\0';
+            if(millis() - last_animation > 250 ){
+                last_animation = millis();
+                if(++display_line_start[i] > len){
+                    display_line_start[i] = 0;
+                }
+            }
+        }
+        display.println(buf[i]);
     }
 
     setFooter();

@@ -67,7 +67,7 @@ void menuRbtn(){
             sleep();
             break;
         case 3: //Back
-            menu_active = false;    
+            menu_active = false;
             menu_item_selected = 0;
             menu_item_top = 0;
         break;
