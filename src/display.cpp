@@ -68,7 +68,8 @@ void printDisplay(uint8_t text_size){
             // scroll the line slowly to display all text
             memcpy(&buf[i], &display_buffer[i][display_line_start[i]], OLED_MAXLEN);
             buf[i][OLED_MAXLEN] = '\0';
-            if(millis() - last_animation > 250 ){
+
+            if(millis() - last_animation > (display_line_start[i]==0 ? DISPLAY_SCROLL_DELAY*4 : DISPLAY_SCROLL_DELAY) ){
                 last_animation = millis();
                 if(++display_line_start[i] > len){
                     display_line_start[i] = 0;
