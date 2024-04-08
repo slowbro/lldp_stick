@@ -2,14 +2,30 @@
 #include "display.h"
 
 char *display_buffer[OLED_LINES];
-int display_buffer_length[OLED_LINES] = {1};
+int display_buffer_length[OLED_LINES] = {0};
 int display_line_start[OLED_LINES] = {0};
 unsigned long last_animation = 0;
 int bat = 680;
 
+void displayInit(){
+    display.begin(0x3C);
+    display.clearDisplay();
+    display.setTextSize(1);
+    display.setCursor(32,16);
+    display.setTextColor(WHITE);
+    display.print(F("Booting..."));
+    display.display();
+
+    for(int i=0;i<OLED_LINES;i++){
+        display_buffer[i] = (char *)malloc(1);
+        display_buffer[i][0] = '\0';
+        display_buffer_length[i] = 1;
+    }
+}
+
 void clearBuffer(){
     for(int i=0;i<OLED_LINES;i++){
-        memset(&display_buffer[i], '\0', sizeof(*display_buffer[i])*display_buffer_length[i]);
+        memset(display_buffer[i], '\0', display_buffer_length[i]);
         display_line_start[i] = 0;
     }
 }

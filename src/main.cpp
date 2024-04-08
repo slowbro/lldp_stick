@@ -51,13 +51,7 @@ void setup(){
     pinMode(RBTN, INPUT_PULLDOWN);
 
     // set up the display
-    display.begin(0x3C);
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setCursor(32,16);
-    display.setTextColor(WHITE);
-    display.print(F("Booting..."));
-    display.display();
+    displayInit();
 
     digitalWrite(WIZ_RESET, HIGH);
     // give the wiznet a bit to initialize

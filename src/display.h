@@ -16,5 +16,6 @@ void printDisplay(uint8_t size);
 void printDisplay();
 void setHeader();
 void setFooter();
+void displayInit();
 
 #endif
