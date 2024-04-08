@@ -11,10 +11,38 @@ byte mac[] = { 0xae, 0x03, 0xf3, 0xc7, 0x08, 0x78 };
 uint8_t rbuf[1500];
 bool got_lldp = false;
 int lbtn, rbtn, lbtn_reading, rbtn_reading, lbtn_last, rbtn_last;
-unsigned long last_debounce_lbtn, last_debounce_rbtn = 0;
+uint32_t last_debounce_lbtn, last_debounce_rbtn = 0;
 
 Adafruit_SSD1306 display(128, SSD1306_LCDHEIGHT, &Wire, OLED_RESET);
 Wiznet5500 w5500(CS);
+
+void read_buttons(){
+    lbtn_reading = digitalRead(LBTN);
+    rbtn_reading = digitalRead(RBTN);
+
+    if(lbtn_last != lbtn){
+        last_debounce_lbtn = millis();
+    }
+
+    if(rbtn_last != rbtn){
+        last_debounce_rbtn = millis();
+    }
+
+    if((millis() - last_debounce_lbtn) > 50){
+        if(lbtn_reading != lbtn){
+            lbtn = lbtn_reading;
+        }
+    }
+
+    if((millis() - last_debounce_rbtn) > 50){
+        if(rbtn_reading != rbtn){
+            rbtn = rbtn_reading;
+        }
+    }
+
+    lbtn_last = lbtn_reading;
+    rbtn_last = rbtn_reading;
+}
 
 void setup(){
     pinMode(WIZ_RESET, OUTPUT);
@@ -42,31 +70,7 @@ void setup(){
 
 void loop(){
     // manage buttons
-    lbtn_reading = digitalRead(LBTN);
-    rbtn_reading = digitalRead(RBTN);
-
-    if(lbtn_last != lbtn){
-        last_debounce_lbtn = millis();
-    }
-
-    if(rbtn_last != rbtn){
-        last_debounce_rbtn = millis();
-    }
-
-    if((millis() - last_debounce_lbtn) > 50){
-        if(lbtn_reading != lbtn){
-            lbtn = lbtn_reading;
-        }
-    }
-
-    if((millis() - last_debounce_rbtn) > 50){
-        if(rbtn_reading != rbtn){
-            rbtn = rbtn_reading;
-        }
-    }
-
-    lbtn_last = lbtn_reading;
-    rbtn_last = rbtn_reading;
+    read_buttons();
 
     // display things
     if(menu_active){

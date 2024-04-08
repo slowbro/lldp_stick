@@ -41,7 +41,7 @@ void displayMenu(){
         free(line);
     }
 
-    display.println("< Next       Select >\0");
+    display.println("< Next       Select >");
     display.display();
 }
 
