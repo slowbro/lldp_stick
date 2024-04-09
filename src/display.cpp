@@ -4,8 +4,8 @@
 char *display_buffer[OLED_LINES];
 int display_buffer_length[OLED_LINES] = {0};
 int display_line_start[OLED_LINES] = {0};
-unsigned long last_animation = 0;
-int bat = 680;
+uint32_t last_animation, last_header_animation = 0;
+int bat = 0;
 
 void displayInit(){
     display.begin(0x3C);
@@ -21,6 +21,9 @@ void displayInit(){
         display_buffer[i][0] = '\0';
         display_buffer_length[i] = 1;
     }
+
+    // initial battery reading
+    bat = analogRead(VDIV);
 }
 
 void clearBuffer(){
@@ -58,13 +61,32 @@ void setHeader(){
     display.fillRect(0, 0, display.width(), 7, WHITE);
     display.setTextSize(1);
     display.setTextColor(BLACK);
-    //display.println("      LLDPStick");
-    if(millis() - last_animation > 250){
-        last_animation = millis();
+    display.println("      LLDPStick");
+
+    if(millis() - last_header_animation > 1000){
+        last_header_animation = millis();
         bat = analogRead(VDIV);
-        display.println(bat*0.0066, 2);
-    } else {
-        display.println(bat*0.0066, 2);
+    }
+
+    // battery sillhouette
+    display.fillRect(display.width()-20, 1, 18, 5, BLACK);
+    display.fillRect(display.width()-2, 3, 1, 1, BLACK);
+
+    // battery bars
+    if(bat >= 585) { // 3.4v
+        display.fillRect(display.width()-18, 2, 2, 3, WHITE);
+    }
+
+    if(bat >= 636) { // 3.7v
+        display.fillRect(display.width()-14, 2, 2, 3, WHITE);
+    }
+
+    if(bat >= 687) { // 4.0v
+        display.fillRect(display.width()-10, 2, 2, 3, WHITE);
+    }
+
+    if(bat >= 720) { // 4.2v
+        display.fillRect(display.width()-6, 2, 2, 3, WHITE);
     }
 }
 
