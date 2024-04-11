@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <w5500.h>
 
 #include "config.h"
 #include "button.h"
@@ -7,13 +6,7 @@
 #include "display.h"
 #include "menu.h"
 #include "sleep.h"
-
-byte mac[] = { 0xae, 0x03, 0xf3, 0xc7, 0x08, 0x78 };
-uint8_t rbuf[1500];
-bool got_lldp = false;
-
-Adafruit_SSD1306 display(128, SSD1306_LCDHEIGHT, &Wire, OLED_RESET);
-Wiznet5500 w5500(CS);
+#include "network.h"
 
 void setup(){
     pinMode(WIZ_RESET, OUTPUT);
@@ -22,12 +15,10 @@ void setup(){
     pinMode(RBTN, INPUT_PULLDOWN);
 
     // set up the display
-    displayInit();
+    display_init();
 
-    digitalWrite(WIZ_RESET, HIGH);
-    // give the wiznet a bit to initialize
-    delay(500);
-    w5500.begin(mac);
+    // initialize the wizchip
+    network_init();
 
     // attach interrupts to both buttons to wake the mcu
     sleep_init_interrupts();

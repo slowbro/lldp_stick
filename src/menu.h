@@ -13,5 +13,7 @@ extern int8_t menu_item_top;
 void displayMenu();
 void menuLbtn();
 void menuRbtn();
+void menuDeviceInfo();
+void menuBleSetup();
 
 #endif

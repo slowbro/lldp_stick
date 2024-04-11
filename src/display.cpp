@@ -6,8 +6,9 @@ int display_buffer_length[OLED_LINES] = {0};
 int display_line_start[OLED_LINES] = {0};
 uint32_t last_animation, last_header_animation = 0;
 int bat = 0;
+Adafruit_SSD1306 display(128, SSD1306_LCDHEIGHT, &Wire, OLED_RESET);
 
-void displayInit(){
+void display_init(){
     display.begin(0x3C);
     display.clearDisplay();
     display.setTextSize(1);
@@ -85,7 +86,7 @@ void setHeader(){
         display.fillRect(display.width()-10, 2, 2, 3, WHITE);
     }
 
-    if(bat >= 720) { // 4.2v
+    if(bat >= 705) { // 4.1v
         display.fillRect(display.width()-6, 2, 2, 3, WHITE);
     }
 }
