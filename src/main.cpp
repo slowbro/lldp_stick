@@ -8,6 +8,7 @@
 #include "sleep.h"
 #include "network.h"
 #include "battery.h"
+#include "ble.h"
 
 void setup(){
     pinMode(LBTN, INPUT_PULLDOWN);
@@ -25,9 +26,14 @@ void setup(){
 
     // read the initial battery voltage
     battery_read();
+
+    // BLE
+    ble_init();
 }
 
 void loop(){
+    blePeripheral.poll();
+
     // read the battery voltage
     battery_read();
 
@@ -74,3 +80,4 @@ void loop(){
         }
     }
 }
+

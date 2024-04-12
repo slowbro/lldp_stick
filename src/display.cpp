@@ -1,6 +1,7 @@
 #include "config.h"
 #include "display.h"
 #include "battery.h"
+#include "ble.h"
 
 char *display_buffer[OLED_LINES];
 int display_buffer_length[OLED_LINES] = {0};
@@ -61,6 +62,14 @@ void display_set_header(){
     display.fillRect(0, 0, display.width(), 7, WHITE);
     display.setTextSize(1);
     display.setTextColor(BLACK);
+    if(ble_connected){
+        // bluetooth logo: super shitty edition
+        // s2g this was easier than drawing a BMP
+        display.drawTriangle(3, 3, 3, 1, 4, 2, BLACK);
+        display.drawTriangle(3, 5, 3, 3, 4, 4, BLACK);
+        display.drawLine(2, 2, 3, 3, BLACK);
+        display.drawLine(2, 4, 3, 3, BLACK);
+    }
     display.println("      LLDPStick");
 
     // battery sillhouette

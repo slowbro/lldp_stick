@@ -11,8 +11,7 @@
     "variant": "LLDPStick"
   },
   "connectivity": [
-    "bluetooth",
-    "nfc"
+    "bluetooth"
   ],
   "debug": {
     "jlink_device": "nRF52832_xxAA",
