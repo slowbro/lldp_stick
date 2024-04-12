@@ -14,3 +14,24 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 ## Dependencies
 
 Requires `s132_nrf52_2.0.1_softdevice.hex` to be placed in `~/.platformio/packages/framework-arduinonordicnrf5/cores/nRF5/SDK/components/softdevice/s132/hex/`. The binary can be downloaded from Nordic Semi.
+
+## Assembly
+
+You will need:
+- The PCB; you can order this from JLCPCB assembled using the included gerber/bom/placement files.
+- An 128x64 i2c OLED Display with a SSD1306 controller and FPC connector; I buy from [BuyDisplay](https://www.buydisplay.com/datasheet-128x64-oled-module-spi-0-96-inch-graphic-displays-white-on-black).
+- 2x Buttons for the top side: [KSC441JST1LFS at Mouser](https://www.mouser.com/ProductDetail/CK/KSC441JST1LFS?qs=8LLMQjkBYsII%252BtWfhZrIfA%3D%3D) - not available for assembly from JLC.
+- A small LiPo battery such as PKCELL [LP801735](https://www.adafruit.com/product/3898) (400mAh) or DU LITER [LP902030](https://www.amazon.com/902030-Battery-Rechargeable-Lithium-Connector/dp/B09WN5GV53/) (550mAh).
+- The 3D printed case.
+- 2x M4x2mm screws.
+
+Steps:
+1. Order your PCBs from JLC (or your manufacturer of choice - the part selection is such that assembly from JLC is turnkey). Continue once PCBs have arrived.
+2. Solder buttons onto the front (back?) of the PCB. Also solder the dual LED package if you opted to only have one side of the PCB assembled.
+3. Solder the OLED FPC connector.
+4. Fold the OLED connector over, and superglue the OLED so that the top of the OLED panel is about 1mm away from the top of the PCB.
+5. Program the board with your favorite SWD programmer. I use a J-LINK.
+6. 3D print the case - body and one of the lids. Use the development lid if you plan on developing the board, as it will let you hang a SWD connector out the back.
+7. Angle the RJ45 side of the board into the case, and then push down on the USB-C end to fit the PCB into the case. Secure with 1-2 M2x4mm screws.
+8. Plug in the battery and (ideally) hotglue it in place in the case.
+9. Slide the "lid" printed part into its slot on the back of the body of the case.
