@@ -8,6 +8,7 @@ bool got_lldp = false;
 Wiznet5500 w5500(CS);
 
 void network_init(){
+    pinMode(WIZ_RESET, OUTPUT);
     digitalWrite(WIZ_RESET, HIGH);
     // give the wiznet a bit to initialize
     delay(500);

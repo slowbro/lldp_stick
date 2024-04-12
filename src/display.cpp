@@ -9,6 +9,8 @@ uint32_t last_animation, last_header_animation = 0;
 Adafruit_SSD1306 display(128, SSD1306_LCDHEIGHT, &Wire, OLED_RESET);
 
 void display_init(){
+    pinMode(OLED_RESET, OUTPUT);
+
     display.begin(0x3C);
     display.clearDisplay();
     display.setTextSize(1);
@@ -22,8 +24,6 @@ void display_init(){
         display_buffer[i][0] = '\0';
         display_buffer_length[i] = 1;
     }
-
-    battery_read();
 }
 
 void clearBuffer(){
@@ -33,7 +33,7 @@ void clearBuffer(){
     }
 }
 
-void setBufferLine(int line, char *str){
+void setBufferLine(int line, const char *str){
     int len = strlen(str);
     display_buffer[line] = (char *)realloc(display_buffer[line], len + 1);
     memcpy(display_buffer[line], str, len);
@@ -48,7 +48,7 @@ void setBufferLine(int line, uint8_t *data, uint8_t start, uint16_t len) {
     display_buffer_length[line] = len;
 }
 
-void setBufferLine(int line, char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
+void setBufferLine(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
     int prefix_len = strlen(prefix);
     display_buffer[line] = (char *)realloc(display_buffer[line], prefix_len + len + 1);
     memcpy(display_buffer[line], prefix, prefix_len);
@@ -62,11 +62,6 @@ void setHeader(){
     display.setTextSize(1);
     display.setTextColor(BLACK);
     display.println("      LLDPStick");
-
-    if(millis() - last_header_animation > 1000){
-        last_header_animation = millis();
-        battery_read();
-    }
 
     // battery sillhouette
     display.fillRect(display.width()-20, 1, 18, 5, BLACK);

@@ -10,9 +10,9 @@ extern bool menu_active;
 extern uint8_t menu_item_selected;
 extern int8_t menu_item_top;
 
-void displayMenu();
-void menuLbtn();
-void menuRbtn();
+void menu_display();
+void menu_lbtn();
+void menu_rbtn();
 void menuDeviceInfo();
 void menuBleSetup();
 

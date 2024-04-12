@@ -16,7 +16,7 @@ const char *menu_items[] = {
     "Back\0"
 };
 
-void displayMenu(){
+void menu_display(){
     display.clearDisplay();
     display.setCursor(0, 0);
     display.setTextSize(1);
@@ -64,7 +64,7 @@ void displayMenu(){
     }
 }
 
-void menuLbtn(){
+void menu_lbtn(){
     if(menu_item_entered != -1){
         // go 'back' from the entered menu item
         menu_item_entered = -1;
@@ -81,7 +81,7 @@ void menuLbtn(){
     }
 }
 
-void menuRbtn(){
+void menu_rbtn(){
     if(menu_item_entered == -1){
         // rudimentary item handling until i can get callbacks or something working
         switch(menu_item_selected){

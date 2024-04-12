@@ -7,12 +7,12 @@
 #include "menu.h"
 #include "sleep.h"
 #include "network.h"
+#include "battery.h"
 
 void setup(){
-    pinMode(WIZ_RESET, OUTPUT);
-    pinMode(OLED_RESET, OUTPUT);
     pinMode(LBTN, INPUT_PULLDOWN);
     pinMode(RBTN, INPUT_PULLDOWN);
+    pinMode(VDIV, INPUT);
 
     // set up the display
     display_init();
@@ -22,22 +22,28 @@ void setup(){
 
     // attach interrupts to both buttons to wake the mcu
     sleep_init_interrupts();
+
+    // read the initial battery voltage
+    battery_read();
 }
 
 void loop(){
+    // read the battery voltage
+    battery_read();
+
     // manage buttons
     button_read();
 
     // display things
     if(menu_active){
-        displayMenu();
+        menu_display();
 
         if(button_lbtn_pressed()){
-            menuLbtn();
+            menu_lbtn();
         }
 
         if(button_rbtn_pressed()){
-            menuRbtn();
+            menu_rbtn();
         }
     } else {
         if(w5500.wizphy_getphylink() == 0){
