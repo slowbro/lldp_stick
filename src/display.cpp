@@ -1,11 +1,11 @@
 #include "config.h"
 #include "display.h"
+#include "battery.h"
 
 char *display_buffer[OLED_LINES];
 int display_buffer_length[OLED_LINES] = {0};
 int display_line_start[OLED_LINES] = {0};
 uint32_t last_animation, last_header_animation = 0;
-int bat = 0;
 Adafruit_SSD1306 display(128, SSD1306_LCDHEIGHT, &Wire, OLED_RESET);
 
 void display_init(){
@@ -23,8 +23,7 @@ void display_init(){
         display_buffer_length[i] = 1;
     }
 
-    // initial battery reading
-    bat = analogRead(VDIV);
+    battery_read();
 }
 
 void clearBuffer(){
@@ -66,7 +65,7 @@ void setHeader(){
 
     if(millis() - last_header_animation > 1000){
         last_header_animation = millis();
-        bat = analogRead(VDIV);
+        battery_read();
     }
 
     // battery sillhouette
@@ -74,19 +73,19 @@ void setHeader(){
     display.fillRect(display.width()-2, 3, 1, 1, BLACK);
 
     // battery bars
-    if(bat >= 585) { // 3.4v
+    if(battery_reading >= 585) { // 3.4v
         display.fillRect(display.width()-18, 2, 2, 3, WHITE);
     }
 
-    if(bat >= 636) { // 3.7v
+    if(battery_reading >= 636) { // 3.7v
         display.fillRect(display.width()-14, 2, 2, 3, WHITE);
     }
 
-    if(bat >= 687) { // 4.0v
+    if(battery_reading >= 687) { // 4.0v
         display.fillRect(display.width()-10, 2, 2, 3, WHITE);
     }
 
-    if(bat >= 705) { // 4.1v
+    if(battery_reading >= 705) { // 4.1v
         display.fillRect(display.width()-6, 2, 2, 3, WHITE);
     }
 }

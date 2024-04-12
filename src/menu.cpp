@@ -2,6 +2,7 @@
 #include "sleep.h"
 #include "util.h"
 #include "network.h"
+#include "battery.h"
 #include "config.h"
 
 bool menu_active = false;
@@ -117,7 +118,9 @@ void menuDeviceInfo(){
     free(macstr);
 
     // battery voltage?
-    display.println("Battery: ");
+    display.print("Battery: ");
+    display.print(battery_voltage(), 2);
+    display.println("v");
 
     display.println();
     display.println("< Back");
