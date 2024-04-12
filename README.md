@@ -9,7 +9,7 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 
 - [ ] Additional diagnostics via BLE
 - [ ] Support CDP
-- [ ] Reduce idle power draw (and thus battery life)
+- [ ] Reduce idle power draw (and thus improve battery life)
 - [ ] Cost reduction: $20-$30 per stick
 
 ## Dependencies
