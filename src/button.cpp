@@ -1,4 +1,5 @@
 #include "button.h"
+#include "sleep.h"
 #include "config.h"
 #include <stdint.h>
 #include <Arduino.h>
@@ -38,6 +39,7 @@ void button_read(){
 bool button_lbtn_pressed(){
     if(lbtn == HIGH){
         lbtn = LOW;
+        keep_awake();
         return true;
     }
 
@@ -47,6 +49,7 @@ bool button_lbtn_pressed(){
 bool button_rbtn_pressed(){
     if(rbtn == HIGH){
         rbtn = LOW;
+        keep_awake();
         return true;
     }
 

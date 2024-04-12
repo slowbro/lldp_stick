@@ -8,5 +8,7 @@ void intHandler();
 void sleep_init_interrupts();
 void sleep();
 void wake();
+void keep_awake();
+void sleep_autosleep();
 
 #endif

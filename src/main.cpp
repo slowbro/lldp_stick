@@ -36,6 +36,10 @@ void setup(){
 }
 
 void loop(){
+    // autosleep
+    sleep_autosleep();
+
+    // do BLE actions
     ble_poll();
 
     // read the battery voltage
@@ -61,6 +65,7 @@ void loop(){
             display_clear_buffer();
             display_set_buffer_line_centered(0, "* No Link *");
         } else {
+            keep_awake();
             if(!got_lldp) {
                 display_clear_buffer();
                 display_set_buffer_line(0, "Waiting for LLDP..");
