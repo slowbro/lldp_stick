@@ -6,16 +6,15 @@
 #include <Wire.h>
 
 extern Adafruit_SSD1306 display;
-extern unsigned long last_animation;
 
-void clearBuffer();
-void setBufferLine(int line, const char *str);
-void setBufferLine(int line, uint8_t *data, uint8_t start, uint16_t len);
-void setBufferLine(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len);
-void printDisplay(uint8_t size);
-void printDisplay();
-void setHeader();
-void setFooter();
+void display_clear_buffer();
+void display_set_buffer_line(int line, const char *str);
+void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t len);
+void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len);
+void display_print(uint8_t size);
+void display_print();
+void display_set_header();
+void display_set_footer();
 void display_init();
 
 #endif

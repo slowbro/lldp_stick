@@ -13,7 +13,7 @@ extern int8_t menu_item_top;
 void menu_display();
 void menu_lbtn();
 void menu_rbtn();
-void menuDeviceInfo();
-void menuBleSetup();
+void menu_device_info();
+void menu_ble_setup();
 
 #endif

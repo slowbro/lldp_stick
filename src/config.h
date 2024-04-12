@@ -3,7 +3,7 @@
 
 #define WIZ_RESET 1 // 8 for rev 2
 #define OLED_RESET 7
-#define CS 5
+#define WIZ_CS 5
 #define LBTN 22
 #define RBTN 6
 #define VDIV 31

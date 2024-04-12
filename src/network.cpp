@@ -2,10 +2,10 @@
 #include "config.h"
 
 byte mac[6];
-uint8_t rbuf[1500];
+uint8_t network_buffer[1500];
 bool got_lldp = false;
 
-Wiznet5500 w5500(CS);
+Wiznet5500 w5500(WIZ_CS);
 
 void network_init(){
     pinMode(WIZ_RESET, OUTPUT);

@@ -1,6 +1,6 @@
 #include "lldp.h"
 
-bool processLLDP(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
+bool process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
     uint8_t tlv_type;
     uint16_t tlv_len = 0;
 

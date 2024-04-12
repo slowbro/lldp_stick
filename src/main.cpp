@@ -48,26 +48,26 @@ void loop(){
     } else {
         if(w5500.wizphy_getphylink() == 0){
             got_lldp = false;
-            clearBuffer();
-            setBufferLine(0, "* No Link *");
+            display_clear_buffer();
+            display_set_buffer_line(0, "* No Link *");
         } else {
             if(!got_lldp) {
-                clearBuffer();
-                setBufferLine(0, "Waiting for LLDP..");
+                display_clear_buffer();
+                display_set_buffer_line(0, "Waiting for LLDP..");
             }
 
-            uint16_t len = w5500.readFrame(rbuf, sizeof(rbuf));
+            uint16_t len = w5500.readFrame(network_buffer, sizeof(network_buffer));
             // Ethertype 0x88CC
-            if(len > 12 && rbuf[12] == 136 && rbuf[13] == 204){
+            if(len > 12 && network_buffer[12] == 136 && network_buffer[13] == 204){
                 got_lldp = true;
                 PDUInfo pinfo;
-                processLLDP(rbuf, len, &pinfo);
-                clearBuffer();
-                setBufferLine(0, "Switch: ", rbuf, pinfo.SystemNameStart, pinfo.SystemNameLength);
-                setBufferLine(1, "Port: ", rbuf, pinfo.PortIdStart, pinfo.PortIdLength);
+                process_lldp(network_buffer, len, &pinfo);
+                display_clear_buffer();
+                display_set_buffer_line(0, "Switch: ", network_buffer, pinfo.SystemNameStart, pinfo.SystemNameLength);
+                display_set_buffer_line(1, "Port: ", network_buffer, pinfo.PortIdStart, pinfo.PortIdLength);
             }
         }
-        printDisplay();
+        display_print();
 
         if(button_rbtn_pressed()){
             menu_active = true;

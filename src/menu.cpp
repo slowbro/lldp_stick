@@ -26,10 +26,10 @@ void menu_display(){
         // display the menu item we're in
         switch(menu_item_entered){
             case 0:
-                menuBleSetup();
+                menu_ble_setup();
                 break;
             case 1:
-                menuDeviceInfo();
+                menu_device_info();
                 break;
             default:
                 menu_item_entered = -1;
@@ -103,7 +103,7 @@ void menu_rbtn(){
     }
 }
 
-void menuDeviceInfo(){
+void menu_device_info(){
     display.clearDisplay();
     display.setCursor(0, 0);
     display.setTextSize(1);
@@ -126,6 +126,14 @@ void menuDeviceInfo(){
     display.display();
 }
 
-void menuBleSetup(){
+void menu_ble_setup(){
+    display.clearDisplay();
+    display.setCursor(0, 0);
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
 
+    display.println("Nothing here yet..");
+    display.setCursor(0,24);
+    display.println("< Back");
+    display.display();
 }
