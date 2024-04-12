@@ -14,6 +14,10 @@ void setup(){
     pinMode(LBTN, INPUT_PULLDOWN);
     pinMode(RBTN, INPUT_PULLDOWN);
     pinMode(VDIV, INPUT);
+    //pinMode(PERIPH, OUTPUT);
+
+    // perform wake/boot actions
+    wake();
 
     // set up the display
     display_init();

@@ -16,14 +16,18 @@ void sleep_init_interrupts(){
     nRF5x_lowPower.enableWakeupByInterrupt(RBTN, RISING);
 }
 
+void wake(){
+    // wake up the peripherals
+    //digitalWrite(PERIPH, LOW);
+    delay(200);
+}
+
 void sleep(){
     digitalWrite(WIZ_RESET, LOW);
     display.clearDisplay();
     display.display();
-    display.ssd1306_command(SSD1306_DISPLAYOFF);	// put the OLED display in sleep mode
-    display.ssd1306_command(0x8D);					// disable charge pump
-    display.ssd1306_command(0x10);					// disable charge pump
-    //digitalWrite(OLED_RESET, LOW);
+    digitalWrite(OLED_RESET, LOW);
+    //digitalWrite(PERIPH, HIGH);
     delay(250);
     nRF5x_lowPower.powerMode(POWER_MODE_OFF);
 }

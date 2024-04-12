@@ -1,6 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define PERIPH 1 // rev 2
 #define WIZ_RESET 1 // 8 for rev 2
 #define OLED_RESET 7
 #define WIZ_CS 5
