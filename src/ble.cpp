@@ -1,11 +1,13 @@
 #include "ble.h"
 #include "network.h"
+#include "battery.h"
 #include "util.h"
 #include <BLEPeripheral.h>
 
 BLEPeripheral                ble_peripheral = BLEPeripheral();
 BLEService                   ble_service = BLEService("19b10000e8f2537e4f6cd104768a1214");
-BLEFixedLengthCharacteristic ble_mac_characteristic = BLEFixedLengthCharacteristic("fff1", BLERead | BLEWrite, 17);
+BLEFixedLengthCharacteristic ble_mac_characteristic = BLEFixedLengthCharacteristic("fff0", BLERead | BLEWrite, 17);
+BLEFloatCharacteristic       ble_battery_characteristic = BLEFloatCharacteristic("fff1", BLERead);
 bool ble_connected = false;
 
 void ble_init(){
@@ -14,6 +16,7 @@ void ble_init(){
 
     ble_peripheral.addAttribute(ble_service);
     ble_peripheral.addAttribute(ble_mac_characteristic);
+    ble_peripheral.addAttribute(ble_battery_characteristic);
 
     ble_peripheral.setEventHandler(BLEConnected, ble_peripheral_connect_handler);
     ble_peripheral.setEventHandler(BLEDisconnected, ble_peripheral_disconnect_handler);
@@ -21,6 +24,8 @@ void ble_init(){
     char *macstr = mac_to_char(mac);
     ble_mac_characteristic.setValue(macstr);
     free(macstr);
+
+    ble_battery_characteristic.setValue(battery_voltage());
 
     ble_peripheral.begin();
 }
@@ -39,3 +44,6 @@ void ble_peripheral_disconnect_handler(BLECentral& central) {
     ble_connected = false;
 }
 
+void ble_characteristic_update_battery(float voltage){
+    ble_battery_characteristic.setValue(voltage);
+}
