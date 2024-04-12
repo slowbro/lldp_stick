@@ -7,7 +7,9 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 
 ## Goals
 
-...
+- [ ] Additional diagnostics via BLE
+- [ ] Support CDP
+- [ ] Reduce idle power draw (and thus battery life)
 
 ## Dependencies
 

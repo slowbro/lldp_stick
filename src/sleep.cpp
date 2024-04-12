@@ -20,7 +20,10 @@ void sleep(){
     digitalWrite(WIZ_RESET, LOW);
     display.clearDisplay();
     display.display();
-    digitalWrite(OLED_RESET, LOW);
+    display.ssd1306_command(SSD1306_DISPLAYOFF);	// put the OLED display in sleep mode
+    display.ssd1306_command(0x8D);					// disable charge pump
+    display.ssd1306_command(0x10);					// disable charge pump
+    //digitalWrite(OLED_RESET, LOW);
     delay(250);
     nRF5x_lowPower.powerMode(POWER_MODE_OFF);
 }

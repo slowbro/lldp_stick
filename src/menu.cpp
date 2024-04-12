@@ -87,11 +87,9 @@ void menuRbtn(){
         switch(menu_item_selected){
             case 0: // BLE Setup
                 menu_item_entered = 0;
-                menuBleSetup();
                 break;
             case 1: // Device Info
                 menu_item_entered = 1;
-                menuDeviceInfo();
                 break;
             case 2: //Poweroff
                 sleep();
