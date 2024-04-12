@@ -9,7 +9,8 @@
 #define RBTN 6
 #define VDIV 31
 
-#define SSD1306_LCDHEIGHT 32
+#define OLED_WIDTH 128
+#define OLED_HEIGHT 32
 #define OLED_MAX_LINES 4
 #define OLED_LINES 2
 #define OLED_MAXLEN 21

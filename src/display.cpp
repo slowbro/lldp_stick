@@ -7,7 +7,7 @@ char *display_buffer[OLED_LINES];
 int display_buffer_length[OLED_LINES] = {0};
 int display_line_start[OLED_LINES] = {0};
 uint32_t display_last_animation, display_last_header_animation = 0;
-Adafruit_SSD1306 display(128, SSD1306_LCDHEIGHT, &Wire, OLED_RESET);
+Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &Wire, OLED_RESET);
 
 void display_init(){
     pinMode(OLED_RESET, OUTPUT);
@@ -40,6 +40,17 @@ void display_set_buffer_line(int line, const char *str){
     memcpy(display_buffer[line], str, len);
     display_buffer[line][len] = '\0';
     display_buffer_length[line] = len;
+}
+
+void display_set_buffer_line_centered(int line, const char *str){
+    int len = strlen(str);
+    int spaces = (OLED_MAXLEN - len) / 2;
+    display_buffer[line] = (char *)realloc(display_buffer[line], spaces + len + 1);
+    if(spaces != 0)
+        sprintf(display_buffer[line], "%*c", spaces, ' ');
+    memcpy(display_buffer[line]+spaces, str, len);
+    display_buffer[line][spaces+len] = '\0';
+    display_buffer_length[line] = spaces+len;
 }
 
 void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t len) {

@@ -59,7 +59,7 @@ void loop(){
         if(w5500.wizphy_getphylink() == 0){
             got_lldp = false;
             display_clear_buffer();
-            display_set_buffer_line(0, "* No Link *");
+            display_set_buffer_line_centered(0, "* No Link *");
         } else {
             if(!got_lldp) {
                 display_clear_buffer();
