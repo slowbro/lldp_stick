@@ -40,7 +40,7 @@ Steps:
 
 ## Approximate Cost
 
-- PCB: $36 assembled (assuming top-side-only assembly, DHL shipping, JLCPCB)
+- PCB: $36 assembled (assuming top-side-only assembly, DHL shipping, JLCPCB, QTY 5)
 - Screen: $5
 - Battery: $6-10
 - Misc components (LED, buttons, screws, case): ~$4
