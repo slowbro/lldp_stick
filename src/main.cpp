@@ -36,7 +36,7 @@ void setup(){
 }
 
 void loop(){
-    blePeripheral.poll();
+    ble_poll();
 
     // read the battery voltage
     battery_read();
