@@ -10,6 +10,7 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 - [ ] Additional diagnostics via BLE
 - [ ] Support CDP
 - [ ] Reduce idle power draw (and thus battery life)
+- [ ] Cost reduction: $20-$30 per stick
 
 ## Dependencies
 
@@ -21,6 +22,7 @@ You will need:
 - The PCB; you can order this from JLCPCB assembled using the included gerber/bom/placement files.
 - An 128x64 i2c OLED Display with a SSD1306 controller and FPC connector; I buy from [BuyDisplay](https://www.buydisplay.com/datasheet-128x64-oled-module-spi-0-96-inch-graphic-displays-white-on-black).
 - 2x Buttons for the top side: [KSC441JST1LFS at Mouser](https://www.mouser.com/ProductDetail/CK/KSC441JST1LFS?qs=8LLMQjkBYsII%252BtWfhZrIfA%3D%3D) - not available for assembly from JLC.
+- Dual-LED chip [LTST-C195KGJRKT at Mouser](https://mou.sr/4auO7dj)
 - A small LiPo battery such as PKCELL [LP801735](https://www.adafruit.com/product/3898) (400mAh) or DU LITER [LP902030](https://www.amazon.com/902030-Battery-Rechargeable-Lithium-Connector/dp/B09WN5GV53/) (550mAh).
 - The 3D printed case.
 - 2x M4x2mm screws.
@@ -35,3 +37,12 @@ Steps:
 7. Angle the RJ45 side of the board into the case, and then push down on the USB-C end to fit the PCB into the case. Secure with 1-2 M2x4mm screws.
 8. Plug in the battery and (ideally) hotglue it in place in the case.
 9. Slide the "lid" printed part into its slot on the back of the body of the case.
+
+## Approximate Cost
+
+- PCB: $36 assembled (assuming top-side-only assembly, DHL shipping, JLCPCB)
+- Screen: $5
+- Battery: $6-10
+- Misc components (LED, buttons, screws, case): ~$4
+
+Total: $51-55
