@@ -38,8 +38,10 @@ void display_init(){
  */
 void display_clear_buffer(){
     for(int i=0;i<8;i++){
-        memset(display_buffer[i], '\0', display_buffer_size[i]);
+        display_buffer[i] = (char *)realloc(display_buffer[i], 1);
+        memset(display_buffer[i], '\0', 1);
         display_line_start[i] = 0;
+        display_buffer_size[i] = 1;
     }
 }
 
@@ -63,7 +65,7 @@ void display_set_buffer_line_centered(int line, const char *str){
     int len = strlen(str);
     int spaces = (OLED_MAXLEN - len) / 2;
     display_buffer[line] = (char *)realloc(display_buffer[line], spaces + len + 1);
-    if(spaces != 0)
+    if(spaces > 0)
         sprintf(display_buffer[line], "%*c", spaces, ' ');
     memcpy(display_buffer[line]+spaces, str, len);
     display_buffer[line][spaces+len] = '\0';
