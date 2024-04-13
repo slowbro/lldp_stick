@@ -1,24 +1,25 @@
 #include "lldp.h"
 
-bool process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
+void process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
     uint8_t tlv_type;
     uint16_t tlv_len = 0;
 
+    // copy the packet into pinfo
+    memcpy(pinfo->data, data, len);
+
     // starting at byte 14, start discovering TLVs and their length
-    for (uint16_t pos = 14; pos < len; pos++) {
+    for (uint16_t pos = 14; pos < len;) {
         // extract the headers for a new TLV
-        uint16_t tlv = ((uint16_t)data[pos] << 8) + data[++pos];
+        uint16_t tlv = ((uint16_t)data[pos] << 8) + data[pos+1];
+
         // first 7 bits are the TLV ID
         tlv_type = tlv >> 9;
+
         // last 9 bits are the TLV length
         tlv_len =    tlv & 0b0000000111111111;
 
-        /*Serial.print(F("\nFound tlv "));
-        Serial.print(tlv_type, DEC);
-        Serial.print(F(" ("));
-        Serial.print(tlv);
-        Serial.print(F(") len "));
-        Serial.println(tlv_len);*/
+        //skip the type-length header altogether, putting 'pos' at the start of the value
+        pos+=2;
 
         // store the TLV info in pinfo (PDUInfo struct)
         switch (tlv_type) {
@@ -28,21 +29,46 @@ bool process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
                 pos = len;
                 break;
             case 1:
-                pinfo->ChassisIdSubtype = data[pos + 1];
-                pinfo->ChassisIdStart = pos + 2;
+                // Chassis ID has a special bit for subtype
+                pinfo->ChassisIdSubtype = data[pos];
+                // start is +1 because of the subtype
+                pinfo->ChassisIdStart = pos + 1;
+                // likewise, length is -1 due to the subtype being taken into account in the length
                 pinfo->ChassisIdLength = tlv_len - 1;
                 break;
             case 2:
-                pinfo->PortIdSubtype = data[pos + 1];
-                pinfo->PortIdStart = pos + 2;
+                // Port ID has a special bit for subtype
+                pinfo->PortIdSubtype = data[pos];
+                // start is +1 because of the subtype
+                pinfo->PortIdStart = pos + 1;
+                // likewise, length is -1 due to the subtype being taken into account in the length
                 pinfo->PortIdLength = tlv_len - 1;
                 break;
+            case 3:
+                pinfo->TTLStart = pos;
+                pinfo->TTLLength = tlv_len;
+                break;
+            case 4:
+                pinfo->PortDescriptionStart = pos;
+                pinfo->PortDescriptionLength = tlv_len;
+                break;
             case 5:
-                pinfo->SystemNameStart = pos + 1;
+                pinfo->SystemNameStart = pos;
                 pinfo->SystemNameLength = tlv_len;
+                break;
+            case 6:
+                pinfo->SystemDescriptionStart = pos;
+                pinfo->SystemDescriptionLength = tlv_len;
+                break;
+            case 7:
+                pinfo->SystemCapabilitiesStart = pos;
+                pinfo->SystemCapabilitiesLength = tlv_len;
+                break;
+            case 8:
+                pinfo->ManagementAddressStart = pos;
+                pinfo->ManagementAddressLength = tlv_len;
+                break;
         }
         pos += tlv_len;
     }
-    return true;
 }
-

@@ -78,8 +78,8 @@ void loop(){
                 PDUInfo pinfo;
                 process_lldp(network_buffer, len, &pinfo);
                 display_clear_buffer();
-                display_set_buffer_line(0, "Switch: ", network_buffer, pinfo.SystemNameStart, pinfo.SystemNameLength);
-                display_set_buffer_line(1, "Port: ", network_buffer, pinfo.PortIdStart, pinfo.PortIdLength);
+                display_set_buffer_line(0, "Switch: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
+                display_set_buffer_line(1, "Port: ", pinfo.data, pinfo.PortIdStart, pinfo.PortIdLength);
             }
         }
         display_print();
