@@ -10,6 +10,10 @@ uint8_t display_buffer_top = 0;
 uint32_t display_last_animation, display_last_header_animation = 0;
 Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &Wire, OLED_RESET);
 
+/**
+ * Initialize the OLED display and display buffer.
+ *
+ */
 void display_init(){
     pinMode(OLED_RESET, OUTPUT);
 
@@ -28,6 +32,10 @@ void display_init(){
     }
 }
 
+/**
+ * Clear the display buffer and reset line starts.
+ *
+ */
 void display_clear_buffer(){
     for(int i=0;i<8;i++){
         memset(display_buffer[i], '\0', display_buffer_size[i]);
@@ -35,6 +43,10 @@ void display_clear_buffer(){
     }
 }
 
+/**
+ * Add a "string" to the display buffer.
+ *
+ */
 void display_set_buffer_line(int line, const char *str){
     int len = strlen(str);
     display_buffer[line] = (char *)realloc(display_buffer[line], len + 1);
@@ -43,6 +55,10 @@ void display_set_buffer_line(int line, const char *str){
     display_buffer_size[line] = len;
 }
 
+/**
+ * Add a "string" to the display buffer, except centered this time.
+ *
+ */
 void display_set_buffer_line_centered(int line, const char *str){
     int len = strlen(str);
     int spaces = (OLED_MAXLEN - len) / 2;
@@ -54,6 +70,10 @@ void display_set_buffer_line_centered(int line, const char *str){
     display_buffer_size[line] = spaces+len;
 }
 
+/**
+ * Add a "string" to the display buffer based on some arbitrary data's start and length (i.e. PDUInfo).
+ *
+ */
 void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t len) {
     display_buffer[line] = (char *)realloc(display_buffer[line], len + 1);
     memcpy(display_buffer[line], &data[start], len);
@@ -61,6 +81,11 @@ void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t le
     display_buffer_size[line] = len;
 }
 
+/**
+ * Add a "string" to the display buffer based on some arbitrary data's start and length (i.e. PDUInfo),
+ * but this time with a statically defined prefix.
+ *
+ */
 void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
     int prefix_len = strlen(prefix);
     display_buffer[line] = (char *)realloc(display_buffer[line], prefix_len + len + 1);
@@ -70,6 +95,10 @@ void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_
     display_buffer_size[line] = prefix_len+len;
 }
 
+/**
+ * Draw the header.
+ *
+ */
 void display_set_header(){
     display.fillRect(0, 0, display.width(), 7, WHITE);
     display.setTextSize(1);
@@ -82,7 +111,8 @@ void display_set_header(){
         display.drawLine(2, 2, 3, 3, BLACK);
         display.drawLine(2, 4, 3, 3, BLACK);
     }
-    display.println("      LLDPStick");
+
+    display.println();
 
     // battery sillhouette
     display.fillRect(display.width()-20, 1, 18, 5, BLACK);
@@ -106,6 +136,10 @@ void display_set_header(){
     }
 }
 
+/**
+ * Draw the footer.
+ *
+ */
 void display_set_footer(){
     display.setTextSize(1);
     display.setTextColor(WHITE);
@@ -116,6 +150,10 @@ void display_set_footer(){
     }
 }
 
+/**
+ * Draw the whole display.
+ *
+ */
 void display_print(){
     char buf[OLED_MAXLEN+1];
 
@@ -155,13 +193,22 @@ void display_print(){
     display.display();
 }
 
+/**
+ * Advance the display(ed) lines, assuming there are lines to advance to.
+ *
+ */
 void display_buffer_advance(){
+    // reset the animation timer so newly added lines don't immediately start to animate
     display_last_animation = millis();
     display_buffer_top++;
     if(display_buffer_top > display_buffer_length()-1)
         display_buffer_top = 0;
 }
 
+/**
+ * Return the length of the display buffer based on strlen()
+ *
+ */
 uint8_t display_buffer_length(){
     uint8_t len = 0;
     for(uint8_t i=0;i<8;i++){
