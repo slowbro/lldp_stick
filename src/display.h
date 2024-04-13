@@ -17,5 +17,7 @@ void display_print();
 void display_set_header();
 void display_set_footer();
 void display_init();
+void display_buffer_advance();
+uint8_t display_buffer_length();
 
 #endif

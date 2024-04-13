@@ -3,9 +3,10 @@
 #include "battery.h"
 #include "ble.h"
 
-char *display_buffer[OLED_LINES];
-int display_buffer_length[OLED_LINES] = {0};
-int display_line_start[OLED_LINES] = {0};
+char *display_buffer[8];
+int display_line_start[8] = {0};
+int display_buffer_size[8] = {0};
+uint8_t display_buffer_top = 0;
 uint32_t display_last_animation, display_last_header_animation = 0;
 Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &Wire, OLED_RESET);
 
@@ -20,16 +21,16 @@ void display_init(){
     display.print(F("Booting..."));
     display.display();
 
-    for(int i=0;i<OLED_LINES;i++){
+    for(int i=0;i<8;i++){
         display_buffer[i] = (char *)malloc(1);
         display_buffer[i][0] = '\0';
-        display_buffer_length[i] = 1;
+        display_buffer_size[i] = 1;
     }
 }
 
 void display_clear_buffer(){
-    for(int i=0;i<OLED_LINES;i++){
-        memset(display_buffer[i], '\0', display_buffer_length[i]);
+    for(int i=0;i<8;i++){
+        memset(display_buffer[i], '\0', display_buffer_size[i]);
         display_line_start[i] = 0;
     }
 }
@@ -39,7 +40,7 @@ void display_set_buffer_line(int line, const char *str){
     display_buffer[line] = (char *)realloc(display_buffer[line], len + 1);
     memcpy(display_buffer[line], str, len);
     display_buffer[line][len] = '\0';
-    display_buffer_length[line] = len;
+    display_buffer_size[line] = len;
 }
 
 void display_set_buffer_line_centered(int line, const char *str){
@@ -50,14 +51,14 @@ void display_set_buffer_line_centered(int line, const char *str){
         sprintf(display_buffer[line], "%*c", spaces, ' ');
     memcpy(display_buffer[line]+spaces, str, len);
     display_buffer[line][spaces+len] = '\0';
-    display_buffer_length[line] = spaces+len;
+    display_buffer_size[line] = spaces+len;
 }
 
 void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t len) {
     display_buffer[line] = (char *)realloc(display_buffer[line], len + 1);
     memcpy(display_buffer[line], &data[start], len);
     display_buffer[line][len] = '\0';
-    display_buffer_length[line] = len;
+    display_buffer_size[line] = len;
 }
 
 void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
@@ -66,7 +67,7 @@ void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_
     memcpy(display_buffer[line], prefix, prefix_len);
     memcpy(display_buffer[line]+prefix_len, &data[start], len);
     display_buffer[line][prefix_len+len] = '\0';
-    display_buffer_length[line] = prefix_len+len;
+    display_buffer_size[line] = prefix_len+len;
 }
 
 void display_set_header(){
@@ -108,7 +109,11 @@ void display_set_header(){
 void display_set_footer(){
     display.setTextSize(1);
     display.setTextColor(WHITE);
-    display.println("              Menu >");
+    if(display_buffer_length() > OLED_LINES){
+        display.println("< More        Menu >");
+    } else {
+        display.println("              Menu >");
+    }
 }
 
 void display_print(uint8_t text_size){
@@ -123,7 +128,7 @@ void display_print(uint8_t text_size){
     display.setTextColor(WHITE);
 
     // display lines, potentially scrolling longer ones
-    for(int i = 0;i<OLED_LINES;i++){
+    for(int i = display_buffer_top;i<display_buffer_top+OLED_LINES;i++){
         memset(buf, '\0', sizeof(buf));
         int len = strlen(display_buffer[i]);
         if(len <= OLED_MAXLEN){
@@ -154,3 +159,19 @@ void display_print(){
     display_print(1);
 }
 
+void display_buffer_advance(){
+    display_last_animation = millis();
+    display_buffer_top++;
+    if(display_buffer_top > display_buffer_length()-1)
+        display_buffer_top = 0;
+}
+
+uint8_t display_buffer_length(){
+    uint8_t len = 0;
+    for(uint8_t i=0;i<8;i++){
+        if(strlen(display_buffer[i]) != 0)
+            len++;
+    }
+
+    return len;
+}
