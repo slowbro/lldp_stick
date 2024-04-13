@@ -109,26 +109,26 @@ void display_set_header(){
 void display_set_footer(){
     display.setTextSize(1);
     display.setTextColor(WHITE);
-    if(display_buffer_length() > OLED_LINES){
+    if(display_buffer_length() > DISPLAY_LINES){
         display.println("< More        Menu >");
     } else {
         display.println("              Menu >");
     }
 }
 
-void display_print(uint8_t text_size){
+void display_print(){
     char buf[OLED_MAXLEN+1];
 
     display.clearDisplay();
-    display.setCursor(OLED_HORIZONTAL_OFFSET, OLED_VERTICAL_OFFSET);
+    display.setCursor(0, 0);
 
     display_set_header();
 
-    display.setTextSize(text_size);
+    display.setTextSize(1);
     display.setTextColor(WHITE);
 
     // display lines, potentially scrolling longer ones
-    for(int i = display_buffer_top;i<display_buffer_top+OLED_LINES;i++){
+    for(int i = display_buffer_top;i<display_buffer_top+DISPLAY_LINES;i++){
         memset(buf, '\0', sizeof(buf));
         int len = strlen(display_buffer[i]);
         if(len <= OLED_MAXLEN){
@@ -153,10 +153,6 @@ void display_print(uint8_t text_size){
     display_set_footer();
 
     display.display();
-}
-
-void display_print(){
-    display_print(1);
 }
 
 void display_buffer_advance(){

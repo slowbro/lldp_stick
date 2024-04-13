@@ -37,7 +37,7 @@ void menu_display(){
     } else {
         // display the main menu
         for(int i = menu_item_top, o=0; i<MENU_ITEMS; i++,o++){
-            if(o > OLED_MAX_LINES-2)
+            if(o > OLED_LINES-2)
                 break;
 
             const char *prefix;

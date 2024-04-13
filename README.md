@@ -8,8 +8,12 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 ## Goals
 
 - [ ] Additional diagnostics via BLE
+    - [ ] Set/reset MAC Address
+    - [ ] DHCP
+    - [ ] Ping
 - [ ] Support CDP
 - [ ] Reduce idle power draw (and thus improve battery life)
+- [ ] 1G PHY: Support switches that don't go down to 100M (i.e. Arista DCS-7280TR)
 - [ ] Cost reduction: $20-$30 per stick
 
 ## Dependencies
