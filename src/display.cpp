@@ -98,6 +98,35 @@ void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_
 }
 
 /**
+ * Add a "string" to the display buffer based on some arbitrary data's start and length (i.e. PDUInfo),
+ * but this time with a statically defined prefix - integer input edition.
+ *
+ */
+void display_set_buffer_line_int(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
+    int prefix_len = strlen(prefix);
+
+    // this is so jank, and i have no idea if it works
+    // for TTLs > 120 :|
+    char *l = (char *)malloc(2);
+    int int_data = 0;
+    memcpy(&int_data, &data[start], len);
+    int_data = int_data >> 4*(sizeof(int_data)-len);
+    int size = snprintf(l, 2, "%d", int_data);
+    if(size > 2){
+        l = (char *)realloc(l, size+1);
+        snprintf(l, size+1, "%d", int_data);
+    }
+
+    display_buffer[line] = (char *)realloc(display_buffer[line], prefix_len + size + 1);
+    memcpy(display_buffer[line], prefix, prefix_len);
+    memcpy(display_buffer[line]+prefix_len, l, size);
+    display_buffer[line][prefix_len+size] = '\0';
+    display_buffer_size[line] = prefix_len+size;
+
+    free(l);
+}
+
+/**
  * Draw the header.
  *
  */

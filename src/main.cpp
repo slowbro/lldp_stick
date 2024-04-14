@@ -80,7 +80,7 @@ void loop(){
                 display_clear_buffer();
                 display_set_buffer_line(0, "Switch: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
                 display_set_buffer_line(1, "Port: ", pinfo.data, pinfo.PortIdStart, pinfo.PortIdLength);
-                display_set_buffer_line(2, "TTL: ", pinfo.data, pinfo.TTLStart, pinfo.TTLLength);
+                display_set_buffer_line_int(2, "TTL: ", pinfo.data, pinfo.TTLStart, pinfo.TTLLength);
                 display_set_buffer_line(3, "Desc: ", pinfo.data, pinfo.PortDescriptionStart, pinfo.PortDescriptionLength);
                 display_set_buffer_line(4, "SysName: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
                 display_set_buffer_line(5, "SysDesc: ", pinfo.data, pinfo.SystemDescriptionStart, pinfo.SystemDescriptionLength);

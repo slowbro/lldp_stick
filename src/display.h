@@ -12,6 +12,7 @@ void display_set_buffer_line(int line, const char *str);
 void display_set_buffer_line_centered(int line, const char *str);
 void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t len);
 void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len);
+void display_set_buffer_line_int(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len);
 void display_print();
 void display_set_header();
 void display_set_footer();
