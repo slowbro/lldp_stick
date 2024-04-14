@@ -7,6 +7,9 @@ void process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
     // copy the packet into pinfo
     memcpy(pinfo->data, data, len);
 
+    // set all the lengths to 0 so we know which TLVs were received
+    lldp_set_defaults(pinfo);
+
     // starting at byte 14, start discovering TLVs and their length
     for (uint16_t pos = 14; pos < len;) {
         // extract the headers for a new TLV
@@ -71,4 +74,15 @@ void process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
         }
         pos += tlv_len;
     }
+}
+
+void lldp_set_defaults(PDUInfo *pinfo){
+    pinfo->ChassisIdLength = 0;
+    pinfo->PortIdLength = 0;
+    pinfo->TTLLength = 0;
+    pinfo->PortDescriptionLength = 0;
+    pinfo->SystemNameLength = 0;
+    pinfo->SystemDescriptionLength = 0;
+    pinfo->SystemCapabilitiesLength = 0;
+    pinfo->ManagementAddressLength = 0;
 }

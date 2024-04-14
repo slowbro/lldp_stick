@@ -77,19 +77,20 @@ void loop(){
                 got_lldp = true;
                 PDUInfo pinfo;
                 process_lldp(network_buffer, len, &pinfo);
+
                 display_clear_buffer();
                 display_set_buffer_line(0, "Switch: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
                 display_set_buffer_line(1, "Port: ", pinfo.data, pinfo.PortIdStart, pinfo.PortIdLength);
                 display_set_buffer_line_int(2, "TTL: ", pinfo.data, pinfo.TTLStart, pinfo.TTLLength);
                 // optional TLVs
                 // this works for now but is kind of undefined behavior
-                if(pinfo.PortDescriptionStart != NULL)
+                if(pinfo.PortDescriptionLength != 0)
                     display_set_buffer_line(3, "Desc: ", pinfo.data, pinfo.PortDescriptionStart, pinfo.PortDescriptionLength);
-                if(pinfo.SystemNameStart != NULL)
+                if(pinfo.SystemNameLength != 0)
                     display_set_buffer_line(4, "SysName: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
-                if(pinfo.SystemDescriptionStart != NULL)
+                if(pinfo.SystemDescriptionLength != 0)
                     display_set_buffer_line(5, "SysDesc: ", pinfo.data, pinfo.SystemDescriptionStart, pinfo.SystemDescriptionLength);
-                if(pinfo.ManagementAddressStart != NULL)
+                if(pinfo.ManagementAddressLength != 0)
                     display_set_buffer_line(6, "Mgmt: ", pinfo.data, pinfo.ManagementAddressStart, pinfo.ManagementAddressLength);
             }
         }
