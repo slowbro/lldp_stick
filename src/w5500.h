@@ -59,6 +59,14 @@ public:
     boolean begin(const uint8_t *address);
 
     /**
+     * Change the MAC Address of the wizchip.
+     * Will reset the chip.
+     *
+     * @param address the local MAC address for the Ethernet interface
+    */
+    void change_mac_address(uint8_t *address);
+
+    /**
      * Shut down the Ethernet controlled
      */
     void end();

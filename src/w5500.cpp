@@ -284,6 +284,11 @@ boolean Wiznet5500::begin(const uint8_t *mac_address)
     return true;
 }
 
+void Wiznet5500::change_mac_address(uint8_t *mac_address){
+    memcpy(_mac_address, mac_address, 6);
+    wizchip_sw_reset();
+}
+
 void Wiznet5500::end()
 {
     setSn_CR(Sn_CR_CLOSE);
