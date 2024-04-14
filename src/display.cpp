@@ -76,7 +76,7 @@ void display_set_buffer_line_centered(int line, const char *str){
  * Add a "string" to the display buffer based on some arbitrary data's start and length (i.e. PDUInfo).
  *
  */
-void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t len) {
+void display_set_buffer_line(int line, uint8_t *data, uint16_t start, uint16_t len) {
     display_buffer[line] = (char *)realloc(display_buffer[line], len + 1);
     memcpy(display_buffer[line], &data[start], len);
     display_buffer[line][len] = '\0';
@@ -88,7 +88,7 @@ void display_set_buffer_line(int line, uint8_t *data, uint8_t start, uint16_t le
  * but this time with a statically defined prefix.
  *
  */
-void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
+void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint16_t start, uint16_t len) {
     int prefix_len = strlen(prefix);
     display_buffer[line] = (char *)realloc(display_buffer[line], prefix_len + len + 1);
     memcpy(display_buffer[line], prefix, prefix_len);
@@ -102,7 +102,7 @@ void display_set_buffer_line(int line, const char *prefix, uint8_t *data, uint8_
  * but this time with a statically defined prefix - integer input edition.
  *
  */
-void display_set_buffer_line_int(int line, const char *prefix, uint8_t *data, uint8_t start, uint16_t len) {
+void display_set_buffer_line_int(int line, const char *prefix, uint8_t *data, uint16_t start, uint16_t len) {
     int prefix_len = strlen(prefix);
 
     // this is so jank, and i have no idea if it works

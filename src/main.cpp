@@ -81,9 +81,16 @@ void loop(){
                 display_set_buffer_line(0, "Switch: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
                 display_set_buffer_line(1, "Port: ", pinfo.data, pinfo.PortIdStart, pinfo.PortIdLength);
                 display_set_buffer_line_int(2, "TTL: ", pinfo.data, pinfo.TTLStart, pinfo.TTLLength);
-                display_set_buffer_line(3, "Desc: ", pinfo.data, pinfo.PortDescriptionStart, pinfo.PortDescriptionLength);
-                display_set_buffer_line(4, "SysName: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
-                display_set_buffer_line(5, "SysDesc: ", pinfo.data, pinfo.SystemDescriptionStart, pinfo.SystemDescriptionLength);
+                // optional TLVs
+                // this works for now but is kind of undefined behavior
+                if(pinfo.PortDescriptionStart != NULL)
+                    display_set_buffer_line(3, "Desc: ", pinfo.data, pinfo.PortDescriptionStart, pinfo.PortDescriptionLength);
+                if(pinfo.SystemNameStart != NULL)
+                    display_set_buffer_line(4, "SysName: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
+                if(pinfo.SystemDescriptionStart != NULL)
+                    display_set_buffer_line(5, "SysDesc: ", pinfo.data, pinfo.SystemDescriptionStart, pinfo.SystemDescriptionLength);
+                if(pinfo.ManagementAddressStart != NULL)
+                    display_set_buffer_line(6, "Mgmt: ", pinfo.data, pinfo.ManagementAddressStart, pinfo.ManagementAddressLength);
             }
         }
         display_print();
