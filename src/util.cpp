@@ -2,6 +2,7 @@
 
 char *mac_to_char(byte mac[]){
     char *macstr = (char *)malloc(18);
+
     for(uint8_t i=0, o=0; i<6;i++,o+=3){
         char buf[3];
         sprintf(buf, "%02X", mac[i]);
@@ -12,4 +13,15 @@ char *mac_to_char(byte mac[]){
     macstr[17] = '\0';
 
     return macstr;
+}
+
+byte *char_to_mac(char *mac){
+    unsigned int imac[6];
+    byte *macbytes = (byte *)malloc(sizeof(byte)*6);
+
+    sscanf(mac, "%x:%x:%x:%x:%x:%x", &imac[0], &imac[1], &imac[2], &imac[3], &imac[4], &imac[5]);
+    for(uint8_t i=0;i<6;i++)
+        macbytes[i] = (unsigned char)imac[i];
+
+    return macbytes;
 }

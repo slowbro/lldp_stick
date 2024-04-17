@@ -31,8 +31,9 @@ void ble_init(){
 
     ble_peripheral.setEventHandler(BLEConnected, ble_peripheral_connect_handler);
     ble_peripheral.setEventHandler(BLEDisconnected, ble_peripheral_disconnect_handler);
+    ble_mac_characteristic.setEventHandler(BLEWritten, ble_mac_updated_handler);
 
-    char *macstr = mac_to_char(mac);
+    char *macstr = mac_to_char(network_mac);
     ble_mac_characteristic.setValue(macstr);
     free(macstr);
 
@@ -53,6 +54,18 @@ void ble_peripheral_connect_handler(BLECentral& central) {
 void ble_peripheral_disconnect_handler(BLECentral& central) {
     // central disconnected event handler
     ble_connected = false;
+}
+
+void ble_mac_updated_handler(BLECentral& central, BLECharacteristic& characteristic){
+    char newmac[17];
+    memset(newmac, 0, 17);
+    memcpy(newmac, ble_mac_characteristic.value(), ble_mac_characteristic.valueLength());
+
+    byte *newmacbytes = char_to_mac(newmac);
+    memcpy(network_mac, newmacbytes, sizeof(*network_mac)*6);
+    free(newmacbytes);
+
+    w5500.change_mac_address(network_mac);
 }
 
 void ble_characteristic_update_battery(float voltage){

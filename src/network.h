@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <w5500.h>
 
-extern byte mac[];
+extern byte network_mac[];
 extern uint8_t network_buffer[1500];
 extern bool got_lldp;
 

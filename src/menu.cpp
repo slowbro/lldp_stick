@@ -111,7 +111,7 @@ void menu_device_info(){
 
     //mac address
     display.print("Mac ");
-    char *macstr = mac_to_char(mac);
+    char *macstr = mac_to_char(network_mac);
     display.println(macstr);
     free(macstr);
 

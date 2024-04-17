@@ -1,7 +1,7 @@
 #include "network.h"
 #include "config.h"
 
-byte mac[6];
+byte network_mac[6];
 uint8_t network_buffer[1500];
 bool got_lldp = false;
 
@@ -13,12 +13,12 @@ void network_init(){
     // give the wiznet a bit to initialize
     delay(500);
     network_generate_mac();
-    w5500.begin(mac);
+    w5500.begin(network_mac);
 }
 
 void network_generate_mac(){
     randomSeed(analogRead(PIN_VDIV));
     for(uint8_t i=0;i<6;i++){
-        mac[i] = random(0, 255);
+        network_mac[i] = random(0, 255);
     }
 }
