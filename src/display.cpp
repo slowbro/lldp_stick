@@ -137,10 +137,10 @@ void display_set_header(){
     if(ble_connected){
         // bluetooth logo: super shitty edition
         // s2g this was easier than drawing a BMP
-        display.drawTriangle(3, 3, 3, 1, 4, 2, BLACK);
-        display.drawTriangle(3, 5, 3, 3, 4, 4, BLACK);
-        display.drawLine(2, 2, 3, 3, BLACK);
-        display.drawLine(2, 4, 3, 3, BLACK);
+        display.drawTriangle(3, 4, 3, 0, 5, 2, BLACK);
+        display.drawTriangle(3, 7, 3, 2, 5, 4, BLACK);
+        display.drawLine(1, 1, 3, 3, BLACK);
+        display.drawLine(1, 5, 3, 3, BLACK);
     }
 
     display.println();
