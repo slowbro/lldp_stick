@@ -8,7 +8,7 @@ uint32_t battery_last_read = 0;
 
 void battery_read(){
     if(millis() - battery_last_read > BATTERY_READ_DELAY){
-        battery_reading = analogRead(VDIV);
+        battery_reading = analogRead(PIN_VDIV);
         battery_last_read = millis();
         ble_characteristic_update_battery(battery_voltage());
     }

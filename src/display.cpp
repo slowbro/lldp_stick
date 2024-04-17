@@ -8,14 +8,14 @@ int display_line_start[8] = {0};
 int display_buffer_size[8] = {0};
 uint8_t display_buffer_top = 0;
 uint32_t display_last_animation, display_last_header_animation = 0;
-Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &Wire, OLED_RESET);
+Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &Wire, PIN_OLED_RESET);
 
 /**
  * Initialize the OLED display and display buffer.
  *
  */
 void display_init(){
-    pinMode(OLED_RESET, OUTPUT);
+    pinMode(PIN_OLED_RESET, OUTPUT);
 
     display.begin(0x3C);
     display.clearDisplay();

@@ -11,10 +11,10 @@
 #include "ble.h"
 
 void setup(){
-    pinMode(LBTN, INPUT_PULLDOWN);
-    pinMode(RBTN, INPUT_PULLDOWN);
-    pinMode(VDIV, INPUT);
-    //pinMode(PERIPH, OUTPUT);
+    pinMode(PIN_LBTN, INPUT_PULLDOWN);
+    pinMode(PIN_RBTN, INPUT_PULLDOWN);
+    pinMode(PIN_VDIV, INPUT);
+    //pinMode(PIN_PERIPH, OUTPUT);
 
     // perform wake/boot actions
     wake();

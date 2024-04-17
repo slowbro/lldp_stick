@@ -12,24 +12,24 @@ void intHandler(){
 }
 
 void sleep_init_interrupts(){
-    attachInterrupt(digitalPinToInterrupt(LBTN), intHandler, RISING);
-    nRF5x_lowPower.enableWakeupByInterrupt(LBTN, RISING);
-    attachInterrupt(digitalPinToInterrupt(RBTN), intHandler, RISING);
-    nRF5x_lowPower.enableWakeupByInterrupt(RBTN, RISING);
+    attachInterrupt(digitalPinToInterrupt(PIN_LBTN), intHandler, RISING);
+    nRF5x_lowPower.enableWakeupByInterrupt(PIN_LBTN, RISING);
+    attachInterrupt(digitalPinToInterrupt(PIN_RBTN), intHandler, RISING);
+    nRF5x_lowPower.enableWakeupByInterrupt(PIN_RBTN, RISING);
 }
 
 void wake(){
     // wake up the peripherals
-    //digitalWrite(PERIPH, LOW);
+    //digitalWrite(PIN_PERIPH, LOW);
     delay(200);
 }
 
 void sleep(){
-    digitalWrite(WIZ_RESET, LOW);
+    digitalWrite(PIN_WIZ_RESET, LOW);
     display.clearDisplay();
     display.display();
-    digitalWrite(OLED_RESET, LOW);
-    //digitalWrite(PERIPH, HIGH);
+    digitalWrite(PIN_OLED_RESET, LOW);
+    //digitalWrite(PIN_PERIPH, HIGH);
     delay(250);
     nRF5x_lowPower.powerMode(POWER_MODE_OFF);
 }

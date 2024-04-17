@@ -9,8 +9,8 @@ uint32_t last_debounce_lbtn, last_debounce_rbtn = 0;
 int lbtn, rbtn = 0;
 
 void button_read(){
-    lbtn_reading = digitalRead(LBTN);
-    rbtn_reading = digitalRead(RBTN);
+    lbtn_reading = digitalRead(PIN_LBTN);
+    rbtn_reading = digitalRead(PIN_RBTN);
 
     if(lbtn_last != lbtn){
         last_debounce_lbtn = millis();

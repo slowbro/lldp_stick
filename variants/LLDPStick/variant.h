@@ -109,6 +109,19 @@ static const uint8_t SCK  = PIN_SPI_SCK ;
 static const uint8_t SDA = PIN_WIRE_SDA;
 static const uint8_t SCL = PIN_WIRE_SCL;
 
+
+/*
+ * LLDPStick Pins
+ */
+#define PIN_PERIPH 1 // rev 2
+#define PIN_WIZ_RESET 1 // 8 for rev 2
+#define PIN_OLED_RESET 7
+#define PIN_WIZ_CS 5
+#define PIN_LBTN 22
+#define PIN_RBTN 6
+#define PIN_VDIV 31
+
+
 #ifdef __cplusplus
 }
 #endif

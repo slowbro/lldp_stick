@@ -5,9 +5,9 @@
 #include <BLEPeripheral.h>
 
 BLEPeripheral                ble_peripheral = BLEPeripheral();
-BLEService                   ble_service = BLEService("19b10000e8f2537e4f6cd104768a1214");
-BLEFixedLengthCharacteristic ble_mac_characteristic = BLEFixedLengthCharacteristic("fff0", BLERead | BLEWrite, 17);
-BLEFloatCharacteristic       ble_battery_characteristic = BLEFloatCharacteristic("fff1", BLERead);
+BLEService                   ble_service = BLEService("fff0");
+BLEFixedLengthCharacteristic ble_mac_characteristic = BLEFixedLengthCharacteristic("fff1", BLERead | BLEWrite, 17);
+BLEFloatCharacteristic       ble_battery_characteristic = BLEFloatCharacteristic("fff2", BLERead);
 bool ble_connected = false;
 
 void ble_init(){
