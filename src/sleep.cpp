@@ -3,6 +3,7 @@
 #include "display.h"
 #include "button.h"
 #include "ble.h"
+#include "network.h"
 #include "setting.h"
 #include <Arduino_nRF5x_lowPower.h>
 
@@ -22,18 +23,36 @@ void sleep_init_interrupts(){
 
 void wake(){
     // wake up the peripherals
+    //pinMode(PIN_PERIPH, OUTPUT);
     //digitalWrite(PIN_PERIPH, LOW);
     delay(200);
 }
 
 void sleep(){
+    // disconnect BLE and shutdown the radio
     ble_end();
+
+    // save settings if necessary
+    if(setting_needs_save)
+        setting_save();
+
+    // end and reset the wizchip
+    w5500.end();
     digitalWrite(PIN_WIZ_RESET, LOW);
+
+    // clear the display and reset the SD1306
     display.clearDisplay();
     display.display();
     digitalWrite(PIN_OLED_RESET, LOW);
+
+    // disable power to peripherals
     //digitalWrite(PIN_PERIPH, HIGH);
+
+    // delay to stop any button press keeping the device awake
+    // when sleeping manually (i.e. from the menu)
     delay(250);
+
+    // power off the MCU
     nRF5x_lowPower.powerMode(POWER_MODE_OFF);
 }
 

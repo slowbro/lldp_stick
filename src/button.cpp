@@ -8,6 +8,11 @@ int lbtn_reading, rbtn_reading, lbtn_last, rbtn_last;
 uint32_t last_debounce_lbtn, last_debounce_rbtn = 0;
 int lbtn, rbtn = 0;
 
+void button_init(){
+    pinMode(PIN_LBTN, INPUT_PULLDOWN);
+    pinMode(PIN_RBTN, INPUT_PULLDOWN);
+}
+
 void button_read(){
     lbtn_reading = digitalRead(PIN_LBTN);
     rbtn_reading = digitalRead(PIN_RBTN);

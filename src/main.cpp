@@ -12,11 +12,6 @@
 #include "setting.h"
 
 void setup(){
-    pinMode(PIN_LBTN, INPUT_PULLDOWN);
-    pinMode(PIN_RBTN, INPUT_PULLDOWN);
-    pinMode(PIN_VDIV, INPUT);
-    //pinMode(PIN_PERIPH, OUTPUT);
-
     // perform wake/boot actions
     wake();
 
@@ -26,6 +21,9 @@ void setup(){
     // set up the display
     display_init();
 
+    // set up the buttons
+    button_init();
+
     // initialize the wizchip
     network_init();
 
@@ -33,7 +31,7 @@ void setup(){
     sleep_init_interrupts();
 
     // read the initial battery voltage
-    battery_read();
+    battery_init();
 
     // BLE
     ble_init();
