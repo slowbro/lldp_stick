@@ -2,7 +2,14 @@
 #include "network.h"
 #include "battery.h"
 #include "util.h"
+#include "nrf_nvic.h"
+#include "nrf_soc.h"
+#include "setting.h"
 #include <BLEPeripheral.h>
+
+// usually in 'app_util_platform.h' but apparently we have to make it ourselves
+// for use with radio notification
+nrf_nvic_state_t nrf_nvic_state;
 
 BLEPeripheral                ble_peripheral = BLEPeripheral();
 
@@ -38,6 +45,9 @@ void ble_init(){
     free(macstr);
 
     ble_battery_characteristic.setValue(battery_voltage());
+
+    // enable a software interrupt for when the radio is inactive
+    ble_radio_notification_init(3, NRF_RADIO_NOTIFICATION_TYPE_INT_ON_INACTIVE, NRF_RADIO_NOTIFICATION_DISTANCE_800US);
 
     ble_peripheral.begin();
 }
@@ -84,4 +94,35 @@ void ble_characteristic_update_mac(byte *mac){
     char *macstr = mac_to_char(mac);
     ble_mac_characteristic.setValue(macstr);
     free(macstr);
+}
+
+uint32_t ble_radio_notification_init(uint32_t irq_priority, uint8_t notification_type, uint8_t notification_distance){
+    uint32_t err_code;
+
+    err_code = sd_nvic_ClearPendingIRQ(SWI1_IRQn);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    err_code = sd_nvic_SetPriority(SWI1_IRQn, irq_priority);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    err_code = sd_nvic_EnableIRQ(SWI1_IRQn);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+
+    // Configure the event
+    return sd_radio_notification_cfg_set(notification_type, notification_distance);
+}
+
+void SWI1_IRQHandler(bool radio_evt){
+    if(setting_needs_save){
+        setting_save();
+    }
 }

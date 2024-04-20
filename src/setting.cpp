@@ -1,10 +1,10 @@
 #include "setting.h"
 #include <EEPROM.h>
-#include "ble.h"
 #include "network.h"
 #include "config.h"
 
-Setting settings;
+Settings settings;
+bool setting_needs_save = false;
 
 void setting_init(){
     uint8_t version = EEPROM.read(0);
@@ -15,7 +15,7 @@ void setting_init(){
 
         settings.autosleep = SLEEP_AUTOSLEEP_SECONDS;
 
-        EEPROM.put(1, &settings);
+        setting_save();
 
         // write the settings version to the first byte of EEPROM
         EEPROM.write(0, SETTING_VERSION);
@@ -25,3 +25,7 @@ void setting_init(){
     }
 }
 
+void setting_save(){
+    EEPROM.put(1, &settings);
+    setting_needs_save = false;
+}

@@ -7,7 +7,7 @@
 
 #define SETTING_VERSION 2
 
-struct Setting {
+struct Settings {
     // the mac address of the device
     byte mac_address[6];
 
@@ -15,8 +15,10 @@ struct Setting {
     uint8_t autosleep;
 };
 
-extern Setting settings;
+extern Settings settings;
+extern bool setting_needs_save;
 
 void setting_init();
+void setting_save();
 
 #endif
