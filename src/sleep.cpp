@@ -2,6 +2,7 @@
 #include "config.h"
 #include "display.h"
 #include "button.h"
+#include "ble.h"
 #include <Arduino_nRF5x_lowPower.h>
 
 volatile bool interrupt = false;
@@ -25,6 +26,7 @@ void wake(){
 }
 
 void sleep(){
+    ble_end();
     digitalWrite(PIN_WIZ_RESET, LOW);
     display.clearDisplay();
     display.display();

@@ -6,6 +6,8 @@
 extern bool ble_connected;
 
 void ble_init();
+void ble_begin();
+void ble_end();
 void ble_poll();
 void ble_peripheral_connect_handler(BLECentral& central);
 void ble_peripheral_disconnect_handler(BLECentral& central);

@@ -3,6 +3,7 @@
 #include "util.h"
 #include "network.h"
 #include "battery.h"
+#include "setting.h"
 #include "config.h"
 
 bool menu_active = false;
@@ -115,12 +116,16 @@ void menu_device_info(){
     display.println(macstr);
     free(macstr);
 
-    // battery voltage?
+    // battery voltage
     display.print("Battery: ");
     display.print(battery_voltage(), 2);
     display.println("v");
 
-    display.println();
+    display.print("Smc ");
+    char *macstr2 = mac_to_char(settings.mac_address);
+    display.println(macstr2);
+    free(macstr2);
+
     display.println("< Back");
 
     display.display();

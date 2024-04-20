@@ -9,6 +9,7 @@
 #include "network.h"
 #include "battery.h"
 #include "ble.h"
+#include "setting.h"
 
 void setup(){
     pinMode(PIN_LBTN, INPUT_PULLDOWN);
@@ -30,6 +31,9 @@ void setup(){
 
     // read the initial battery voltage
     battery_read();
+
+    // initialize/load settings (before BLE activation)
+    setting_init();
 
     // BLE
     ble_init();

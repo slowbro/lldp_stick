@@ -42,6 +42,14 @@ void ble_init(){
     ble_peripheral.begin();
 }
 
+void ble_begin(){
+    ble_peripheral.begin();
+}
+
+void ble_end(){
+    ble_peripheral.end();
+}
+
 void ble_poll(){
     ble_peripheral.poll();
 }
