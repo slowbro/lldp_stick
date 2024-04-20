@@ -20,6 +20,9 @@ void setup(){
     // perform wake/boot actions
     wake();
 
+    // initialize/load settings (before BLE activation)
+    setting_init();
+
     // set up the display
     display_init();
 
@@ -31,9 +34,6 @@ void setup(){
 
     // read the initial battery voltage
     battery_read();
-
-    // initialize/load settings (before BLE activation)
-    setting_init();
 
     // BLE
     ble_init();

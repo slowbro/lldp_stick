@@ -1,4 +1,5 @@
 #include "network.h"
+#include "setting.h"
 #include "config.h"
 
 byte network_mac[6];
@@ -12,8 +13,7 @@ void network_init(){
     digitalWrite(PIN_WIZ_RESET, HIGH);
     // give the wiznet a bit to initialize
     delay(500);
-    network_generate_mac();
-    w5500.begin(network_mac);
+    w5500.begin(settings.mac_address);
 }
 
 void network_generate_mac(){

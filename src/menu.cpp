@@ -13,6 +13,7 @@ int8_t menu_item_top = 0;
 const char *menu_items[] = {
     "BLE Setup\0",
     "Device Info\0",
+    "Settings\0",
     "Poweroff\0",
     "Back\0"
 };
@@ -92,10 +93,12 @@ void menu_rbtn(){
             case 1: // Device Info
                 menu_item_entered = 1;
                 break;
-            case 2: //Poweroff
+            case 2: // Settings
+                break;
+            case 3: //Poweroff
                 sleep();
                 break;
-            case 3: //Back
+            case 4: //Back
                 menu_active = false;
                 menu_item_selected = 0;
                 menu_item_top = 0;
@@ -112,7 +115,7 @@ void menu_device_info(){
 
     //mac address
     display.print("Mac ");
-    char *macstr = mac_to_char(network_mac);
+    char *macstr = mac_to_char(w5500._mac_address);
     display.println(macstr);
     free(macstr);
 

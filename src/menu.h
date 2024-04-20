@@ -4,7 +4,7 @@
 #include "stdint.h"
 #include "display.h"
 
-#define MENU_ITEMS 4
+#define MENU_ITEMS 5
 
 extern bool menu_active;
 extern uint8_t menu_item_selected;
