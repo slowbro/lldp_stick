@@ -3,6 +3,7 @@
 #include "display.h"
 #include "button.h"
 #include "ble.h"
+#include "setting.h"
 #include <Arduino_nRF5x_lowPower.h>
 
 volatile bool interrupt = false;
@@ -41,7 +42,7 @@ void keep_awake(){
 }
 
 void sleep_autosleep(){
-    if((millis() - sleep_last_action) > (SLEEP_AUTOSLEEP_SECONDS * 1000)){
+    if((millis() - sleep_last_action) > (settings.autosleep * 1000)){
         uint32_t last_animation = 0;
         uint8_t animation_pos = 0;
         char animation[] = "Z ... z ... z ...";

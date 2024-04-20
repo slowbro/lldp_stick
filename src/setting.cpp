@@ -2,6 +2,7 @@
 #include <EEPROM.h>
 #include "ble.h"
 #include "network.h"
+#include "config.h"
 
 Setting settings;
 
@@ -11,6 +12,8 @@ void setting_init(){
         // version is out of sync, overwrite the settings
         network_generate_mac();
         memcpy(&settings.mac_address, &network_mac, sizeof(network_mac));
+
+        settings.autosleep = SLEEP_AUTOSLEEP_SECONDS;
 
         EEPROM.put(1, &settings);
 
