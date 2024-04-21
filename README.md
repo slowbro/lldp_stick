@@ -20,6 +20,14 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 
 Requires `s132_nrf52_2.0.1_softdevice.hex` to be placed in `~/.platformio/packages/framework-arduinonordicnrf5/cores/nRF5/SDK/components/softdevice/s132/hex/`. The binary can be downloaded from Nordic Semi.
 
+## Building
+
+1. Install [PlatformIO](https://platformio.org/).
+2. Clone the repository.
+3. See "Dependencies" above - download and copy the SoftDevice hex file to the proper location.
+4. Run platformio: `pio run`.
+5. To upload: plug in your J-Link (or other programmer) and run `pio run -t upload`.
+
 ## Assembly
 
 You will need:
