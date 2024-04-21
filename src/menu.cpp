@@ -104,9 +104,13 @@ void menu_lbtn(){
                 }
                 break;
             case 0:
-                // generate a new mac address
-                network_generate_mac();
-                break;
+                {
+                    // generate a new mac address
+                    byte *mac = network_generate_mac();
+                    memcpy(&settings.mac_address, mac, sizeof(settings.mac_address));
+                    free(mac);
+                    break;
+                }
             case 1:
                 // increment/rollover the autosleep timer
                 if(settings.autosleep < 300)
@@ -178,7 +182,6 @@ void menu_rbtn(){
             switch(menu_settings_item_entered){
                 case 0:
                     // save mac address
-                    memcpy(&settings.mac_address, network_mac, sizeof(network_mac));
                     w5500.change_mac_address(settings.mac_address);
                     setting_needs_save = true;
                     menu_settings_item_entered = -1;
@@ -287,7 +290,7 @@ void menu_settings(){
 void menu_settings_mac_address(){
     display.setCursor(14, 6);
     
-    char *macstr = mac_to_char(network_mac);
+    char *macstr = mac_to_char(settings.mac_address);
     display.println(macstr);
     free(macstr);
     

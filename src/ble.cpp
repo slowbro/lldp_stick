@@ -40,7 +40,7 @@ void ble_init(){
     ble_peripheral.setEventHandler(BLEDisconnected, ble_peripheral_disconnect_handler);
     ble_mac_characteristic.setEventHandler(BLEWritten, ble_mac_updated_handler);
 
-    char *macstr = mac_to_char(network_mac);
+    char *macstr = mac_to_char(settings.mac_address);
     ble_mac_characteristic.setValue(macstr);
     free(macstr);
 
@@ -80,10 +80,10 @@ void ble_mac_updated_handler(BLECentral& central, BLECharacteristic& characteris
     memcpy(newmac, ble_mac_characteristic.value(), ble_mac_characteristic.valueLength());
 
     byte *newmacbytes = char_to_mac(newmac);
-    memcpy(network_mac, newmacbytes, sizeof(*network_mac)*6);
+    memcpy(&settings.mac_address, newmacbytes, sizeof(settings.mac_address));
     free(newmacbytes);
 
-    w5500.change_mac_address(network_mac);
+    w5500.change_mac_address(settings.mac_address);
 }
 
 void ble_characteristic_update_battery(float voltage){

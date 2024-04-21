@@ -11,8 +11,9 @@ void setting_init(){
     uint8_t version = EEPROM.read(0);
     if(version != SETTING_VERSION){
         // version is out of sync, overwrite the settings
-        network_generate_mac();
-        memcpy(&settings.mac_address, &network_mac, sizeof(network_mac));
+        byte *mac = network_generate_mac();
+        memcpy(&settings.mac_address, &mac, sizeof(settings.mac_address));
+        free(mac);
 
         settings.autosleep = SLEEP_AUTOSLEEP_SECONDS;
         settings.text_scroll_multiplier = 1.0;
@@ -24,9 +25,6 @@ void setting_init(){
     } else {
         // version is in sync, populate 'settings' struct
         EEPROM.get(1, settings);
-
-        // populate local variables
-        memcpy(&network_mac, &settings.mac_address, sizeof(settings.mac_address));
     }
 }
 
