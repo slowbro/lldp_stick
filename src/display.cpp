@@ -159,11 +159,11 @@ void display_set_header(){
         display.fillRect(display.width()-14, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 687) { // 4.0v
+    if(battery_reading >= 671) { // 3.9v
         display.fillRect(display.width()-10, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 705) { // 4.1v
+    if(battery_reading >= 696) { // 4.05v
         display.fillRect(display.width()-6, 2, 2, 3, WHITE);
     }
 }
