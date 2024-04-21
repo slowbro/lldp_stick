@@ -31,48 +31,47 @@ void menu_display(){
     display.setTextSize(1);
     display.setTextColor(WHITE);
 
-    if(menu_item_entered != -1){
-        // display the menu item we're in
-        switch(menu_item_entered){
-            case 0:
-                menu_ble_setup();
-                break;
-            case 1:
-                menu_device_info();
-                break;
-            case 2:
-                menu_settings();
-                break;
-            default:
-                menu_item_entered = -1;
-        }
-    } else {
-        // display the main menu
-        for(int i = menu_item_top, o=0; i<MENU_ITEMS; i++,o++){
-            if(o > OLED_LINES-2)
-                break;
+    // display the menu item we're in
+    switch(menu_item_entered){
+        case -1: // display the main menu
+            for(int i = menu_item_top, o=0; i<MENU_ITEMS; i++,o++){
+                if(o > OLED_LINES-2)
+                    break;
 
-            const char *prefix;
-            char *line;
-            if(i == menu_item_selected){
-                prefix = "> ";
-            } else {
-                prefix = "  ";
+                const char *prefix;
+                char *line;
+                if(i == menu_item_selected){
+                    prefix = "> ";
+                } else {
+                    prefix = "  ";
+                }
+                int len = strlen(menu_items[i]);
+
+                line = (char *)malloc(len+3);
+                memcpy(line, prefix, 2);
+                memcpy(line+2, menu_items[i], len);
+                line[len+2] = '\0';
+
+                display.println(line);
+
+                free(line);
             }
-            int len = strlen(menu_items[i]);
 
-            line = (char *)malloc(len+3);
-            memcpy(line, prefix, 2);
-            memcpy(line+2, menu_items[i], len);
-            line[len+2] = '\0';
-
-            display.println(line);
-
-            free(line);
-        }
-
-        display.println("< Next       Select >");
+            display.println("< Next       Select >");
+            break;
+        case 0:
+            menu_ble_setup();
+            break;
+        case 1:
+            menu_device_info();
+            break;
+        case 2:
+            menu_settings();
+            break;
+        default:
+            menu_item_entered = -1;
     }
+
     display.display();
 }
 
@@ -222,46 +221,44 @@ void menu_ble_setup(){
 }
 
 void menu_settings(){
-    if(menu_settings_item_entered != -1){
-        switch(menu_settings_item_entered){
-            case 0: // Mac Address
-                menu_settings_mac_address();
-                break;
-            case 1: // Autosleep Timer
-                menu_settings_autosleep();
-                break;
-            case 2: // Scroll Speed
-                menu_settings_scroll_speed();
-                break;
-            default:
-                menu_settings_item_entered = -1;
-        }
-    } else {
-        // display the main menu
-        for(int i = menu_settings_item_top, o=0; i<MENU_SETTINGS_ITEMS; i++,o++){
-            if(o > OLED_LINES-2)
-                break;
+    switch(menu_settings_item_entered){
+        case -1: // display the settings menu
+            for(int i = menu_settings_item_top, o=0; i<MENU_SETTINGS_ITEMS; i++,o++){
+                if(o > OLED_LINES-2)
+                    break;
 
-            const char *prefix;
-            char *line;
-            if(i == menu_settings_item_selected){
-                prefix = "> ";
-            } else {
-                prefix = "  ";
+                const char *prefix;
+                char *line;
+                if(i == menu_settings_item_selected){
+                    prefix = "> ";
+                } else {
+                    prefix = "  ";
+                }
+                int len = strlen(menu_settings_items[i]);
+
+                line = (char *)malloc(len+3);
+                memcpy(line, prefix, 2);
+                memcpy(line+2, menu_settings_items[i], len);
+                line[len+2] = '\0';
+
+                display.println(line);
+
+                free(line);
             }
-            int len = strlen(menu_settings_items[i]);
 
-            line = (char *)malloc(len+3);
-            memcpy(line, prefix, 2);
-            memcpy(line+2, menu_settings_items[i], len);
-            line[len+2] = '\0';
-
-            display.println(line);
-
-            free(line);
-        }
-
-        display.println("< Next       Select >");
+            display.println("< Next       Select >");
+            break;
+        case 0: // Mac Address
+            menu_settings_mac_address();
+            break;
+        case 1: // Autosleep Timer
+            menu_settings_autosleep();
+            break;
+        case 2: // Scroll Speed
+            menu_settings_scroll_speed();
+            break;
+        default:
+            menu_settings_item_entered = -1;
     }
 }
 
