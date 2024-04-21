@@ -16,13 +16,13 @@ void network_init(){
     w5500.begin(settings.mac_address);
 }
 
-byte *network_generate_mac(){
-    byte *ret = (byte *)malloc(sizeof(byte)*6);
+void network_generate_mac(byte *dest){
+    byte mac[6];
 
     randomSeed(analogRead(PIN_VDIV));
     for(uint8_t i=0;i<6;i++){
-        ret[i] = random(0, 255);
+        mac[i] = random(0, 255);
     }
 
-    return ret;
+    memcpy(dest, &mac, sizeof(byte)*6);
 }

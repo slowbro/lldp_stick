@@ -11,13 +11,13 @@ void setting_init(){
     uint8_t version = EEPROM.read(0);
     if(version != SETTING_VERSION){
         // version is out of sync, overwrite the settings
-        byte *mac = network_generate_mac();
-        memcpy(&settings.mac_address, &mac, sizeof(settings.mac_address));
-        free(mac);
+        network_generate_mac(settings.mac_address);
 
         settings.autosleep = SLEEP_AUTOSLEEP_SECONDS;
         settings.text_scroll_multiplier = 1.0;
 
+        // saving here is *generally* a safe activity,
+        // since this function is called before BLE init
         setting_save();
 
         // write the settings version to the first byte of EEPROM

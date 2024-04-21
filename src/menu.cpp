@@ -106,9 +106,7 @@ void menu_lbtn(){
             case 0:
                 {
                     // generate a new mac address
-                    byte *mac = network_generate_mac();
-                    memcpy(&settings.mac_address, mac, sizeof(settings.mac_address));
-                    free(mac);
+                    network_generate_mac(settings.mac_address);
                     break;
                 }
             case 1:
