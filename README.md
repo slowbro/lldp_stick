@@ -18,7 +18,7 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 
 ## Dependencies
 
-Requires `s132_nrf52_2.0.1_softdevice.hex` to be placed in `~/.platformio/packages/framework-arduinonordicnrf5/cores/nRF5/SDK/components/softdevice/s132/hex/`. The binary can be downloaded from Nordic Semi.
+Requires `s132_nrf52_2.0.1_softdevice.hex` to be placed in `~/.platformio/packages/framework-arduinonordicnrf5/cores/nRF5/SDK/components/softdevice/s132/hex/`. The binary can be downloaded from Nordic Semi [here](https://www.nordicsemi.com/Products/Development-software/nRF5-SDK/Download) under '11.0.0nRF5 SDK'.
 
 ## Building
 
