@@ -23,5 +23,6 @@ extern bool setting_needs_save;
 
 void setting_init();
 void setting_save();
+void setting_safe_save();
 
 #endif

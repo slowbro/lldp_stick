@@ -1,6 +1,7 @@
 #include "setting.h"
 #include <EEPROM.h>
 #include "network.h"
+#include "ble.h"
 #include "config.h"
 
 Settings settings;
@@ -32,4 +33,10 @@ void setting_init(){
 void setting_save(){
     EEPROM.put(1, settings);
     setting_needs_save = false;
+}
+
+void setting_safe_save(){
+    ble_end();
+    setting_save();
+    ble_begin();
 }

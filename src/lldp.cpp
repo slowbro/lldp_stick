@@ -1,6 +1,10 @@
 #include "lldp.h"
 
-void process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
+/**
+ * Process LLDP TLVs from +data+ of +len+ length. Store into +pinfo+.
+ *
+ */
+void lldp_process(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
     uint8_t tlv_type;
     uint16_t tlv_len = 0;
 
@@ -76,6 +80,10 @@ void process_lldp(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
     }
 }
 
+/**
+ * Set the defaults for all TLV lengths so we can tell which TLVs we have received.
+ *
+ */
 void lldp_set_defaults(PDUInfo *pinfo){
     pinfo->ChassisIdLength = 0;
     pinfo->PortIdLength = 0;

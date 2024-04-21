@@ -78,7 +78,7 @@ void loop(){
             if(len > 12 && network_buffer[12] == 136 && network_buffer[13] == 204){
                 got_lldp = true;
                 PDUInfo pinfo;
-                process_lldp(network_buffer, len, &pinfo);
+                lldp_process(network_buffer, len, &pinfo);
 
                 display_clear_buffer();
                 display_set_buffer_line(0, "Switch: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);

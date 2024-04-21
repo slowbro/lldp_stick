@@ -89,6 +89,7 @@ void menu_lbtn(){
             menu_item_top = 0;
         }
     } else if(menu_item_entered == 2){
+        // settings menu
         switch(menu_settings_item_entered){
             case -1:
                 // scroll through settings menu items
@@ -214,11 +215,7 @@ void menu_device_info(){
     display.print(battery_voltage(), 2);
     display.println("v");
 
-    display.print("Smc ");
-    char *macstr2 = mac_to_char(settings.mac_address);
-    display.println(macstr2);
-    free(macstr2);
-
+    display.println();
     display.println("< Back");
 
     display.display();

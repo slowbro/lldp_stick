@@ -1,19 +1,27 @@
 #include "sleep.h"
-#include "config.h"
 #include "display.h"
 #include "button.h"
 #include "ble.h"
 #include "network.h"
 #include "setting.h"
+#include "config.h"
 #include <Arduino_nRF5x_lowPower.h>
 
 volatile bool interrupt = false;
 uint32_t sleep_last_action = millis();
 
+/**
+ * Interrupt Handler function for button presses. Functionally meaningless.
+ *
+ */
 void intHandler(){
     interrupt = true;
 }
 
+/**
+ * Initialize button interrupts, to wake the MCU on button-press.
+ *
+ */
 void sleep_init_interrupts(){
     attachInterrupt(digitalPinToInterrupt(PIN_LBTN), intHandler, RISING);
     nRF5x_lowPower.enableWakeupByInterrupt(PIN_LBTN, RISING);
@@ -21,6 +29,10 @@ void sleep_init_interrupts(){
     nRF5x_lowPower.enableWakeupByInterrupt(PIN_RBTN, RISING);
 }
 
+/**
+ * Perform wake actions, such as enabling peripherals.
+ *
+ */
 void wake(){
     // wake up the peripherals
     //pinMode(PIN_PERIPH, OUTPUT);
@@ -28,6 +40,10 @@ void wake(){
     delay(200);
 }
 
+/**
+ * Sleep the device, first performing necessary actions.
+ *
+ */
 void sleep(){
     // disconnect BLE and shutdown the radio
     ble_end();
@@ -56,11 +72,20 @@ void sleep(){
     nRF5x_lowPower.powerMode(POWER_MODE_OFF);
 }
 
+/**
+ * Keep the device awake by resetting the sleep_last_action variable to now.
+ *
+ */
 void keep_awake(){
     sleep_last_action = millis();
 }
 
+/**
+ * Auto-sleep the device after an interval (or not, if the interval == 0).
+ *
+ */
 void sleep_autosleep(){
+    // never sleep if autosleep interval is 0
     if(settings.autosleep == 0)
         return;
 
