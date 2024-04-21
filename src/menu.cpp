@@ -72,8 +72,8 @@ void menu_display(){
         }
 
         display.println("< Next       Select >");
-        display.display();
     }
+    display.display();
 }
 
 void menu_lbtn(){
@@ -200,11 +200,6 @@ void menu_rbtn(){
 }
 
 void menu_device_info(){
-    display.clearDisplay();
-    display.setCursor(0, 0);
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-
     //mac address
     display.print("Mac ");
     char *macstr = mac_to_char(w5500._mac_address);
@@ -218,28 +213,15 @@ void menu_device_info(){
 
     display.println();
     display.println("< Back");
-
-    display.display();
 }
 
 void menu_ble_setup(){
-    display.clearDisplay();
-    display.setCursor(0, 0);
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-
     display.println("Nothing here yet..");
     display.setCursor(0,24);
     display.println("< Back");
-    display.display();
 }
 
 void menu_settings(){
-    display.clearDisplay();
-    display.setCursor(0, 0);
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-
     if(menu_settings_item_entered != -1){
         switch(menu_settings_item_entered){
             case 0: // Mac Address
@@ -281,8 +263,6 @@ void menu_settings(){
 
         display.println("< Next       Select >");
     }
-
-    display.display();
 }
 
 void menu_settings_mac_address(){
