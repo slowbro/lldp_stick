@@ -2,6 +2,7 @@
 #include "display.h"
 #include "battery.h"
 #include "ble.h"
+#include "setting.h"
 
 char *display_buffer[8];
 int display_line_start[8] = {0};
@@ -209,7 +210,7 @@ void display_print(){
             memcpy(&buf, &display_buffer[i][display_line_start[i]], OLED_MAXLEN);
             buf[OLED_MAXLEN] = '\0';
 
-            if(millis() - display_last_animation > (display_line_start[i]==0 ? DISPLAY_SCROLL_DELAY*4 : DISPLAY_SCROLL_DELAY) ){
+            if(millis() - display_last_animation > (display_line_start[i]==0 ? (DISPLAY_SCROLL_DELAY*4*settings.text_scroll_multiplier) : (DISPLAY_SCROLL_DELAY*settings.text_scroll_multiplier)) ){
                 display_last_animation = millis();
                 if(++display_line_start[i] > len){
                     display_line_start[i] = 0;

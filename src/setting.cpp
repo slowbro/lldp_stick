@@ -14,6 +14,7 @@ void setting_init(){
         memcpy(&settings.mac_address, &network_mac, sizeof(network_mac));
 
         settings.autosleep = SLEEP_AUTOSLEEP_SECONDS;
+        settings.text_scroll_multiplier = 1.0;
 
         setting_save();
 
@@ -22,10 +23,13 @@ void setting_init(){
     } else {
         // version is in sync, populate 'settings' struct
         EEPROM.get(1, settings);
+
+        // populate local variables
+        memcpy(&network_mac, &settings.mac_address, sizeof(settings.mac_address));
     }
 }
 
 void setting_save(){
-    EEPROM.put(1, &settings);
+    EEPROM.put(1, settings);
     setting_needs_save = false;
 }

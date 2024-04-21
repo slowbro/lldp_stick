@@ -5,14 +5,17 @@
 #include <Arduino.h>
 #include <EEPROM.h>
 
-#define SETTING_VERSION 2
+#define SETTING_VERSION 4
 
 struct Settings {
     // the mac address of the device
     byte mac_address[6];
 
     //the amount of time (seconds) to idle before sleep
-    uint8_t autosleep;
+    uint16_t autosleep;
+
+    // the multiplier we use to determine text scrolling speed
+    float text_scroll_multiplier;
 };
 
 extern Settings settings;

@@ -61,6 +61,9 @@ void keep_awake(){
 }
 
 void sleep_autosleep(){
+    if(settings.autosleep == 0)
+        return;
+
     if((millis() - sleep_last_action) > (settings.autosleep * 1000)){
         uint32_t last_animation = 0;
         uint8_t animation_pos = 0;

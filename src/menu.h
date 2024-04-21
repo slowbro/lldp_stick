@@ -5,6 +5,7 @@
 #include "display.h"
 
 #define MENU_ITEMS 5
+#define MENU_SETTINGS_ITEMS 5
 
 extern bool menu_active;
 extern uint8_t menu_item_selected;
@@ -15,5 +16,9 @@ void menu_lbtn();
 void menu_rbtn();
 void menu_device_info();
 void menu_ble_setup();
+void menu_settings();
+void menu_settings_mac_address();
+void menu_settings_autosleep();
+void menu_settings_scroll_speed();
 
 #endif
