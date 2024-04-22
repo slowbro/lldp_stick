@@ -86,14 +86,23 @@ void loop(){
                 display_set_buffer_line_int(2, "TTL: ", pinfo.data, pinfo.TTLStart, pinfo.TTLLength);
                 // optional TLVs
                 // this works for now but is kind of undefined behavior
-                if(pinfo.PortDescriptionLength != 0)
-                    display_set_buffer_line(3, "Desc: ", pinfo.data, pinfo.PortDescriptionStart, pinfo.PortDescriptionLength);
-                if(pinfo.SystemNameLength != 0)
-                    display_set_buffer_line(4, "SysName: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
-                if(pinfo.SystemDescriptionLength != 0)
-                    display_set_buffer_line(5, "SysDesc: ", pinfo.data, pinfo.SystemDescriptionStart, pinfo.SystemDescriptionLength);
-                if(pinfo.ManagementAddressLength != 0)
-                    display_set_buffer_line(6, "Mgmt: ", pinfo.data, pinfo.ManagementAddressStart, pinfo.ManagementAddressLength);
+                uint8_t line = 3;
+                if(pinfo.PortDescriptionLength != 0){
+                    display_set_buffer_line(line, "Desc: ", pinfo.data, pinfo.PortDescriptionStart, pinfo.PortDescriptionLength);
+                    line++;
+                }
+                if(pinfo.SystemNameLength != 0){
+                    display_set_buffer_line(line, "SysName: ", pinfo.data, pinfo.SystemNameStart, pinfo.SystemNameLength);
+                    line++;
+                }
+                if(pinfo.SystemDescriptionLength != 0){
+                    display_set_buffer_line(line, "SysDesc: ", pinfo.data, pinfo.SystemDescriptionStart, pinfo.SystemDescriptionLength);
+                    line++;
+                }
+                if(pinfo.ManagementAddressLength != 0){
+                    display_set_buffer_line(line, "Mgmt: ", pinfo.data, pinfo.ManagementAddressStart, pinfo.ManagementAddressLength);
+                    line++;
+                }
             }
         }
         display_print();
