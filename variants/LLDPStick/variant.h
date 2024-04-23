@@ -114,7 +114,7 @@ static const uint8_t SCL = PIN_WIRE_SCL;
  * LLDPStick Pins
  */
 #define PIN_PERIPH 1 // rev 2
-#define PIN_WIZ_RESET 1 // 8 for rev 2
+#define PIN_WIZ_RESET 8 // 8 for rev 2
 #define PIN_OLED_RESET 7
 #define PIN_WIZ_CS 5
 #define PIN_LBTN 22

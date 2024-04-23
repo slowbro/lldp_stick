@@ -35,8 +35,8 @@ void sleep_init_interrupts(){
  */
 void wake(){
     // wake up the peripherals
-    //pinMode(PIN_PERIPH, OUTPUT);
-    //digitalWrite(PIN_PERIPH, LOW);
+    pinMode(PIN_PERIPH, OUTPUT);
+    digitalWrite(PIN_PERIPH, LOW);
     delay(200);
 }
 
@@ -62,7 +62,7 @@ void sleep(){
     digitalWrite(PIN_OLED_RESET, LOW);
 
     // disable power to peripherals
-    //digitalWrite(PIN_PERIPH, HIGH);
+    digitalWrite(PIN_PERIPH, HIGH);
 
     // delay to stop any button press keeping the device awake
     // when sleeping manually (i.e. from the menu)
