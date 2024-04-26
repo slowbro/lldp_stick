@@ -43,12 +43,13 @@ Steps:
 1. Order your PCBs from JLC (or your manufacturer of choice - the part selection is such that assembly from JLC is turnkey). Continue once PCBs have arrived.
 2. Solder buttons onto the front (back?) of the PCB. Also solder the dual LED package if you opted to only have one side of the PCB assembled.
 3. Solder the OLED FPC connector.
-4. Fold the OLED connector over, and superglue the OLED so that the top of the OLED panel is about 1mm away from the top of the PCB.
-5. Program the board with your favorite SWD programmer. I use a J-LINK.
-6. 3D print the case - body and one of the lids. Use the development lid if you plan on developing the board, as it will let you hang a SWD connector out the back.
-7. Angle the RJ45 side of the board into the case, and then push down on the USB-C end to fit the PCB into the case. Secure with 1-2 M2x4mm screws.
-8. Plug in the battery and (ideally) hotglue it in place in the case.
-9. Slide the "lid" printed part into its slot on the back of the body of the case.
+4. Fold the OLED connector over, and superglue the OLED so that the top of the OLED panel is about flush with the top of the PCB.
+5. Flush-trim the RJ-45 connector pins.
+6. Program the board with your favorite SWD programmer. I use a J-LINK.
+7. 3D print the case - body and one of the lids. Use the development lid if you plan on developing the board, as it will let you hang a SWD connector out the back.
+8. Angle the RJ45 side of the board into the case, and then push down on the USB-C end to fit the PCB into the case. Secure with 1-2 M2x4mm screws.
+9. Plug in the battery and (ideally) hotglue it in place in the case.
+10. Slide the "lid" printed part into its slot on the back of the body of the case.
 
 ## Approximate Cost
 
