@@ -16,7 +16,6 @@ void menu_toggle();
 void menu_deselect();
 void menu_ble_setup();
 void menu_device_info();
-void menu_settings_deselect();
 void menu_settings_mac_address();
 void menu_settings_mac_address_lbtn();
 void menu_settings_mac_address_rbtn();

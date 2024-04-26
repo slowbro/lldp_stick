@@ -14,7 +14,7 @@ menu_item* menu_main[] = {
     new menu_item_header(),
     new menu_item_display("BLE Setup", menu_ble_setup, menu_deselect, NULL),
     new menu_item_display("Device Info", menu_device_info, menu_deselect, NULL),
-    new menu_item_submenu("Settings", 7, menu_settings),
+    new menu_item_submenu("Settings", 6, menu_settings),
     new menu_item_command("Poweroff", sleep),
     new menu_item_command("Back", menu_toggle),
     new menu_item_footer("< Next       Select >")
@@ -23,10 +23,9 @@ menu_item* menu_main[] = {
 menu_item* menu_settings[] = {
     new menu_item_header(),
     new menu_item_display("MAC Address", menu_settings_mac_address, menu_settings_mac_address_lbtn, menu_settings_mac_address_rbtn),
-    new menu_item_display("Autosleep Timer", menu_settings_autosleep, menu_settings_autosleep_lbtn, menu_settings_deselect),
-    new menu_item_display("Text Scroll Speed", menu_settings_scroll_speed, menu_settings_scroll_speed_lbtn, menu_settings_deselect),
+    new menu_item_display("Autosleep Timer", menu_settings_autosleep, menu_settings_autosleep_lbtn, menu_deselect),
+    new menu_item_display("Text Scroll Speed", menu_settings_scroll_speed, menu_settings_scroll_speed_lbtn, menu_deselect),
     new menu_item_back("Save Settings", menu_settings_save),
-    new menu_item_back("Back"),
     new menu_item_footer("< Next       Select >")
 };
 
@@ -65,11 +64,6 @@ void menu_device_info(){
     display.println("< Back");
 }
 
-void menu_settings_deselect(){
-    setting_needs_save = true;
-    menu.deselect();
-}
-
 void menu_settings_mac_address(){
     display.setCursor(14, 6);
     
@@ -83,11 +77,12 @@ void menu_settings_mac_address(){
 
 void menu_settings_mac_address_lbtn(){
     network_generate_mac(settings.mac_address);
+    setting_needs_save = true;
 }
 
 void menu_settings_mac_address_rbtn(){
     w5500.change_mac_address(settings.mac_address);
-    menu_settings_deselect();
+    menu.deselect();
 }
 
 void menu_settings_autosleep(){
@@ -104,6 +99,8 @@ void menu_settings_autosleep_lbtn(){
         settings.autosleep += 30;
     else
         settings.autosleep = 0;
+
+    setting_needs_save = true;
 }
 
 void menu_settings_scroll_speed(){
@@ -129,6 +126,8 @@ void menu_settings_scroll_speed_lbtn(){
     } else {
         settings.text_scroll_multiplier = 1.0;
     }
+
+    setting_needs_save = true;
 }
 
 void menu_settings_save(){
