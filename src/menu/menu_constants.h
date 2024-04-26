@@ -1,0 +1,15 @@
+#ifndef MENU_CONSTANTS_H
+#define MENU_CONSTANTS_H
+
+#define MENU_ITEM_NONE 0
+#define MENU_ITEM_COMMAND 1
+#define MENU_ITEM_SUBMENU 2
+#define MENU_ITEM_MAIN_MENU_HEADER 3
+#define MENU_ITEM_SUB_MENU_HEADER 4
+#define MENU_ITEM_DISPLAY 5
+#define MENU_ITEM_END_OF_MENU 6
+#define MENU_ITEM_BACK 7
+
+typedef void (*fptr)();
+
+#endif

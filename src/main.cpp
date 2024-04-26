@@ -35,6 +35,9 @@ void setup(){
 
     // BLE
     ble_init();
+
+    // initialize menu classes
+    menu_init();
 }
 
 void loop(){
@@ -52,14 +55,14 @@ void loop(){
 
     // display things
     if(menu_active){
-        menu_display();
+        menu.update();
 
         if(button_lbtn_pressed()){
-            menu_lbtn();
+            menu.lbtn();
         }
 
         if(button_rbtn_pressed()){
-            menu_rbtn();
+            menu.rbtn();
         }
     } else {
         if(w5500.wizphy_getphylink() == 0){
@@ -112,7 +115,7 @@ void loop(){
         }
 
         if(button_rbtn_pressed()){
-            menu_active = true;
+            menu_toggle();
         }
     }
 }
