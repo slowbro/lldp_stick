@@ -88,8 +88,13 @@ void menu_settings_mac_address_rbtn(){
 void menu_settings_autosleep(){
     display.setCursor(0,0);
     display.println("Autosleep Seconds:");
-    display.setCursor(50, 10);
-    display.println(settings.autosleep);
+    if(settings.autosleep != 0){
+        display.setCursor(50, 10);
+        display.println(settings.autosleep);
+    } else {
+        display.setCursor(42, 10);
+        display.println("Never");
+    }
     display.setCursor(0, 24);
     display.println("< Next         Save >");
 }
