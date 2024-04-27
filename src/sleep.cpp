@@ -38,6 +38,9 @@ void wake(){
     pinMode(PIN_PERIPH, OUTPUT);
     digitalWrite(PIN_PERIPH, LOW);
     delay(200);
+
+    // we don't need the internal DCDC converter - disable it. saves ~1mA in sleep
+    sd_power_dcdc_mode_set(NRF_POWER_DCDC_DISABLE);
 }
 
 /**
