@@ -32,13 +32,13 @@ void sleep_init_interrupts(){
  *
  */
 void wake(){
+    // we don't need the internal DCDC converter - disable it. saves ~1mA in sleep
+    NRF_POWER->DCDCEN = 0;
+
     // wake up the peripherals
     pinMode(PIN_PERIPH, OUTPUT);
     digitalWrite(PIN_PERIPH, LOW);
     delay(200);
-
-    // we don't need the internal DCDC converter - disable it. saves ~1mA in sleep
-    sd_power_dcdc_mode_set(NRF_POWER_DCDC_DISABLE);
 }
 
 /**
