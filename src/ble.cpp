@@ -5,6 +5,7 @@
 #include "nrf_nvic.h"
 #include "nrf_soc.h"
 #include "setting.h"
+#include "util.h"
 #include <BLEPeripheral.h>
 
 // usually in 'app_util_platform.h' but apparently we have to make it ourselves
@@ -24,7 +25,7 @@ BLEDescriptor                ble_battery_descriptor     = BLEDescriptor("2901", 
 bool ble_connected = false;
 
 void ble_init(){
-    ble_peripheral.setLocalName("LLDP Stick");
+    ble_peripheral.setLocalName("LLDP Stick " STRINGIFY(BLE_ID));
 
     ble_peripheral.setAdvertisedServiceUuid(ble_mac_service.uuid());
     ble_peripheral.addAttribute(ble_mac_service);
