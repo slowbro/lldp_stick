@@ -7,7 +7,6 @@
 #include "config.h"
 #include <Arduino_nRF5x_lowPower.h>
 
-volatile bool interrupt = false;
 uint32_t sleep_last_action = millis();
 
 /**
@@ -15,7 +14,6 @@ uint32_t sleep_last_action = millis();
  *
  */
 void intHandler(){
-    interrupt = true;
 }
 
 /**
