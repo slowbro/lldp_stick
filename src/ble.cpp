@@ -5,8 +5,12 @@
 #include "nrf_nvic.h"
 #include "nrf_soc.h"
 #include "setting.h"
+#include "sleep.h"
 #include "util.h"
 #include <BLEPeripheral.h>
+
+const char *ble_id = "LLDP Stick " STRINGIFY(BLE_ID);
+bool ble_connected = false;
 
 // usually in 'app_util_platform.h' but apparently we have to make it ourselves
 // for use with radio notification
@@ -22,10 +26,8 @@ BLEService                   ble_battery_service        = BLEService("ddd0");
 BLEFloatCharacteristic       ble_battery_characteristic = BLEFloatCharacteristic("ddd1", BLERead);
 BLEDescriptor                ble_battery_descriptor     = BLEDescriptor("2901", "Battery Voltage");
 
-bool ble_connected = false;
-
 void ble_init(){
-    ble_peripheral.setLocalName("LLDP Stick " STRINGIFY(BLE_ID));
+    ble_peripheral.setLocalName(ble_id);
 
     ble_peripheral.setAdvertisedServiceUuid(ble_mac_service.uuid());
     ble_peripheral.addAttribute(ble_mac_service);
@@ -63,6 +65,9 @@ void ble_end(){
 
 void ble_poll(){
     ble_peripheral.poll();
+
+    if(settings.ble_keep_awake && ble_connected)
+        keep_awake();
 }
 
 void ble_peripheral_connect_handler(BLECentral& central) {

@@ -4,6 +4,7 @@
 #include <BLEPeripheral.h>
 
 extern bool ble_connected;
+extern const char *ble_id;
 
 void ble_init();
 void ble_begin();

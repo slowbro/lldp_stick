@@ -4,6 +4,7 @@
 #include "battery.h"
 #include "util.h"
 #include "network.h"
+#include "ble.h"
 #include "config.h"
 
 bool menu_active = false;
@@ -12,9 +13,9 @@ oled_menu menu(&display, 4, 21);
 
 menu_item* menu_main[] = {
     new menu_item_header(),
-    new menu_item_display("BLE Setup", menu_ble_setup, menu_deselect, NULL),
+    new menu_item_display("BLE Info", menu_ble_info, menu_deselect, NULL),
     new menu_item_display("Device Info", menu_device_info, menu_deselect, NULL),
-    new menu_item_submenu("Settings", 6, menu_settings),
+    new menu_item_submenu("Settings", 7, menu_settings),
     new menu_item_command("Poweroff", sleep),
     new menu_item_command("Back", menu_toggle),
     new menu_item_footer("< Next       Select >")
@@ -25,6 +26,7 @@ menu_item* menu_settings[] = {
     new menu_item_display("MAC Address", menu_settings_mac_address, menu_settings_mac_address_lbtn, menu_settings_mac_address_rbtn),
     new menu_item_display("Autosleep Timer", menu_settings_autosleep, menu_settings_autosleep_lbtn, menu_deselect),
     new menu_item_display("Text Scroll Speed", menu_settings_scroll_speed, menu_settings_scroll_speed_lbtn, menu_deselect),
+    new menu_item_display("BLE Keep-Awake", menu_settings_ble_wake, menu_settings_ble_wake_lbtn, menu_deselect),
     new menu_item_back("Save Settings", menu_settings_save),
     new menu_item_footer("< Next       Select >")
 };
@@ -42,8 +44,14 @@ void menu_deselect(){
     menu.deselect();
 }
 
-void menu_ble_setup(){
-    display.println("Nothing here yet..");
+void menu_ble_info(){
+    display.println(ble_id);
+    display.print("Status: ");
+    if(ble_connected)
+        display.println("Connected");
+    else
+        display.println("Disconnected");
+
     display.setCursor(0,24);
     display.println("< Back");
 }
@@ -132,6 +140,24 @@ void menu_settings_scroll_speed_lbtn(){
         settings.text_scroll_multiplier = 1.0;
     }
 
+    setting_needs_save = true;
+}
+
+void menu_settings_ble_wake(){
+    display.println("Stay Awake on BLE?");
+
+    display.setCursor(50, 10);
+    if(settings.ble_keep_awake)
+        display.println("Yes");
+    else
+        display.println("No");
+
+    display.setCursor(0, 24);
+    display.println("< Toggle       Save >");
+}
+
+void menu_settings_ble_wake_lbtn(){
+    settings.ble_keep_awake = !settings.ble_keep_awake;
     setting_needs_save = true;
 }
 

@@ -14,7 +14,7 @@ extern bool menu_active;
 void menu_init();
 void menu_toggle();
 void menu_deselect();
-void menu_ble_setup();
+void menu_ble_info();
 void menu_device_info();
 void menu_settings_mac_address();
 void menu_settings_mac_address_lbtn();
@@ -23,6 +23,8 @@ void menu_settings_autosleep();
 void menu_settings_autosleep_lbtn();
 void menu_settings_scroll_speed();
 void menu_settings_scroll_speed_lbtn();
+void menu_settings_ble_wake();
+void menu_settings_ble_wake_lbtn();
 void menu_settings_save();
 
 extern menu_item* menu_main[];

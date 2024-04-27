@@ -13,8 +13,10 @@ void setting_init(){
         // version is out of sync, overwrite the settings
         network_generate_mac(settings.mac_address);
 
+        // set default settings
         settings.autosleep = SLEEP_AUTOSLEEP_SECONDS;
         settings.text_scroll_multiplier = 1.0;
+        settings.ble_keep_awake = false;
 
         // saving here is *generally* a safe activity,
         // since this function is called before BLE init

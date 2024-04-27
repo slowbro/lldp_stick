@@ -5,7 +5,7 @@
 #include <Arduino.h>
 #include <EEPROM.h>
 
-#define SETTING_VERSION 4
+#define SETTING_VERSION 5
 
 struct Settings {
     // the mac address of the device
@@ -16,6 +16,9 @@ struct Settings {
 
     // the multiplier we use to determine text scrolling speed
     float text_scroll_multiplier;
+
+    // keep awake when BLE connected?
+    bool ble_keep_awake;
 };
 
 extern Settings settings;
