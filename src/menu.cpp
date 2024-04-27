@@ -15,7 +15,7 @@ menu_item* menu_main[] = {
     new menu_item_header(),
     new menu_item_display("BLE Info", menu_ble_info, menu_deselect, NULL),
     new menu_item_display("Device Info", menu_device_info, menu_deselect, NULL),
-    new menu_item_submenu("Settings", 7, menu_settings),
+    new menu_item_submenu("Settings", 8, menu_settings),
     new menu_item_command("Poweroff", sleep),
     new menu_item_command("Back", menu_toggle),
     new menu_item_footer("< Next       Select >")
@@ -27,6 +27,7 @@ menu_item* menu_settings[] = {
     new menu_item_display("Autosleep Timer", menu_settings_autosleep, menu_settings_autosleep_lbtn, menu_deselect),
     new menu_item_display("Text Scroll Speed", menu_settings_scroll_speed, menu_settings_scroll_speed_lbtn, menu_deselect),
     new menu_item_display("BLE Keep-Awake", menu_settings_ble_wake, menu_settings_ble_wake_lbtn, menu_deselect),
+    new menu_item_display("Dim OLED", menu_settings_oled_dim, menu_settings_oled_dim_lbtn, menu_deselect),
     new menu_item_back("Save Settings", menu_settings_save),
     new menu_item_footer("< Next       Select >")
 };
@@ -158,6 +159,25 @@ void menu_settings_ble_wake(){
 
 void menu_settings_ble_wake_lbtn(){
     settings.ble_keep_awake = !settings.ble_keep_awake;
+    setting_needs_save = true;
+}
+
+void menu_settings_oled_dim(){
+    display.println("Dim OLED?");
+
+    display.setCursor(50, 10);
+    if(settings.oled_dim)
+        display.println("Yes");
+    else
+        display.println("No");
+
+    display.setCursor(0, 24);
+    display.println("< Toggle       Save >");
+}
+
+void menu_settings_oled_dim_lbtn(){
+    settings.oled_dim = !settings.oled_dim;
+    display.dim(settings.oled_dim);
     setting_needs_save = true;
 }
 

@@ -25,6 +25,8 @@ void menu_settings_scroll_speed();
 void menu_settings_scroll_speed_lbtn();
 void menu_settings_ble_wake();
 void menu_settings_ble_wake_lbtn();
+void menu_settings_oled_dim();
+void menu_settings_oled_dim_lbtn();
 void menu_settings_save();
 
 extern menu_item* menu_main[];

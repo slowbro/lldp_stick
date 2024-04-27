@@ -1,8 +1,8 @@
-#include "config.h"
 #include "display.h"
 #include "battery.h"
 #include "ble.h"
 #include "setting.h"
+#include "config.h"
 
 char *display_buffer[8];
 int display_line_start[8] = {0};
@@ -19,6 +19,9 @@ void display_init(){
     pinMode(PIN_OLED_RESET, OUTPUT);
 
     display.begin(0x3C);
+
+    display.dim(settings.oled_dim);
+
     display.clearDisplay();
     display.setTextSize(1);
     display.setCursor(32,16);
