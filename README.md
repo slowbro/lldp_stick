@@ -41,7 +41,7 @@ You will need:
 - 2x M4x2mm screws.
 
 Steps:
-1. Order your PCBs from JLC (or your manufacturer of choice - the part selection is such that assembly from JLC is turnkey). Continue once PCBs have arrived.
+1. [Order your PCBs from JLCPCB](gerber/README.md) (or your manufacturer of choice - the part selection is such that assembly from JLC is turnkey). Continue once PCBs have arrived.
 2. Solder buttons onto the front (back?) of the PCB. Also solder the dual LED package if you opted to only have one side of the PCB assembled.
 3. Solder the OLED FPC connector.
 4. Fold the OLED connector over, and superglue the OLED so that the top of the OLED panel is about flush with the top of the PCB.
