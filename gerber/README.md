@@ -3,11 +3,11 @@
 # How to Order (JLCPCB)
 
 1. Zip all `Gerber_` and `Drill_` files into one zipfile.
-2. Upload to JLCPCB.
+2. Upload zipfile to JLCPCB: https://jlcpcb.com/
 3. Selection the following options (use defaults if not specified):
     - Confirm Production File: yes
-    - Remover Order Number: Specify a Location
-4. Optional: Select PCB Assemby, using the following options:
+    - Remove Order Number: Specify a Location
+4. Select PCB Assemby, using the following options:
     - PCBA Type: Economic
     - Assemby Side: Top
     - Tooling Holes: Added by Customer
