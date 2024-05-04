@@ -28,8 +28,6 @@ class menu_item {
         virtual fptr get_lbtn(){ return NULL; }
         virtual fptr get_rbtn(){ return NULL; }
         virtual uint8_t get_size(){ return 0; }
-        virtual void lbtn_action(){};
-        virtual void rbtn_action(){};
 };
 
 class menu_item_header : public menu_item {
