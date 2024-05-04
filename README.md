@@ -36,7 +36,7 @@ You will need:
 - An 128x64 i2c OLED Display with a SSD1306 controller and FPC connector; I buy from [BuyDisplay](https://www.buydisplay.com/datasheet-128x64-oled-module-spi-0-96-inch-graphic-displays-white-on-black).
 - 2x Buttons for the top side: [KSC441JST1LFS at Mouser](https://www.mouser.com/ProductDetail/CK/KSC441JST1LFS?qs=8LLMQjkBYsII%252BtWfhZrIfA%3D%3D) - not available for assembly from JLC.
 - Dual-LED chip [LTST-C195KGJRKT at Mouser](https://mou.sr/4auO7dj)
-- A small LiPo battery such as PKCELL [LP801735](https://www.adafruit.com/product/3898) (400mAh) or DU LITER [LP902030](https://www.amazon.com/902030-Battery-Rechargeable-Lithium-Connector/dp/B09WN5GV53/) (550mAh).
+- A small LiPo battery such as PKCELL [LP801735](https://www.adafruit.com/product/3898) (400mAh), DU LITER [LP902030](https://www.amazon.com/902030-Battery-Rechargeable-Lithium-Connector/dp/B09WN5GV53/) (550mAh), or DU LITER [802245](https://bihuade.com/products/37v-802245-1000mah-bihuade-lithium-polymer-rechargeable-battery-for-bluetooth-headset-speaker) (1000mAh).
 - The 3D printed case.
 - 2x M4x2mm screws.
 
