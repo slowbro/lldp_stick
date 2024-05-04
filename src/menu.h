@@ -23,6 +23,8 @@ void menu_settings_autosleep();
 void menu_settings_autosleep_lbtn();
 void menu_settings_scroll_speed();
 void menu_settings_scroll_speed_lbtn();
+void menu_settings_ble();
+void menu_settings_ble_lbtn();
 void menu_settings_ble_wake();
 void menu_settings_ble_wake_lbtn();
 void menu_settings_oled_dim();

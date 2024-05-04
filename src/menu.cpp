@@ -15,7 +15,7 @@ menu_item* menu_main[] = {
     new menu_item_header(),
     new menu_item_display("BLE Info", menu_ble_info, menu_deselect, NULL),
     new menu_item_display("Device Info", menu_device_info, menu_deselect, NULL),
-    new menu_item_submenu("Settings", 8, menu_settings),
+    new menu_item_submenu("Settings", 9, menu_settings),
     new menu_item_command("Poweroff", sleep),
     new menu_item_command("Back", menu_toggle),
     new menu_item_footer("< Next       Select >")
@@ -26,6 +26,7 @@ menu_item* menu_settings[] = {
     new menu_item_display("MAC Address", menu_settings_mac_address, menu_settings_mac_address_lbtn, menu_settings_mac_address_rbtn),
     new menu_item_display("Autosleep Timer", menu_settings_autosleep, menu_settings_autosleep_lbtn, menu_deselect),
     new menu_item_display("Text Scroll Speed", menu_settings_scroll_speed, menu_settings_scroll_speed_lbtn, menu_deselect),
+    new menu_item_display("BLE Enable/Disable", menu_settings_ble, menu_settings_ble_lbtn, menu_deselect),
     new menu_item_display("BLE Keep-Awake", menu_settings_ble_wake, menu_settings_ble_wake_lbtn, menu_deselect),
     new menu_item_display("Dim OLED", menu_settings_oled_dim, menu_settings_oled_dim_lbtn, menu_deselect),
     new menu_item_back("Save Settings", menu_settings_save),
@@ -144,6 +145,28 @@ void menu_settings_scroll_speed_lbtn(){
     setting_needs_save = true;
 }
 
+void menu_settings_ble(){
+    display.println("Disable BLE?");
+
+    display.setCursor(50, 10);
+    if(settings.ble_disable)
+        display.println("Yes");
+    else
+        display.println("No");
+
+    display.setCursor(0, 24);
+    display.println("< Toggle       Save >");
+}
+
+void menu_settings_ble_lbtn(){
+    settings.ble_disable = !settings.ble_disable;
+
+    if(settings.ble_disable)
+        ble_end();
+    else
+        ble_begin();
+}
+
 void menu_settings_ble_wake(){
     display.println("Stay Awake on BLE?");
 
@@ -183,4 +206,7 @@ void menu_settings_oled_dim_lbtn(){
 
 void menu_settings_save(){
     setting_needs_save = true;
+    
+    if(settings.ble_disable)
+        setting_save();
 }

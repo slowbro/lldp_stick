@@ -5,7 +5,7 @@
 #include <Arduino.h>
 #include <EEPROM.h>
 
-#define SETTING_VERSION 6
+#define SETTING_VERSION 7
 
 struct Settings {
     // the mac address of the device
@@ -22,6 +22,9 @@ struct Settings {
 
     // dim the oled?
     bool oled_dim;
+
+    // disable BLE?
+    bool ble_disable;
 };
 
 extern Settings settings;

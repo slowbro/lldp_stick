@@ -52,7 +52,8 @@ void ble_init(){
     // enable a software interrupt for when the radio is inactive
     ble_radio_notification_init(3, NRF_RADIO_NOTIFICATION_TYPE_INT_ON_INACTIVE, NRF_RADIO_NOTIFICATION_DISTANCE_800US);
 
-    ble_peripheral.begin();
+    if(!settings.ble_disable)
+        ble_peripheral.begin();
 }
 
 void ble_begin(){
@@ -64,6 +65,9 @@ void ble_end(){
 }
 
 void ble_poll(){
+    if(settings.ble_disable)
+        return;
+
     ble_peripheral.poll();
 
     if(settings.ble_keep_awake && ble_connected)
