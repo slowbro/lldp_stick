@@ -68,12 +68,12 @@ void loop(){
         if(w5500.wizphy_getphylink() == 0){
             got_lldp = false;
             display_clear_buffer();
-            display_set_buffer_line_centered(0, "* No Link *");
+            display_set_buffer_line_centered(1, "* No Link *");
         } else {
             keep_awake();
             if(!got_lldp) {
                 display_clear_buffer();
-                display_set_buffer_line(0, "Waiting for LLDP..");
+                display_set_buffer_line(1, "Waiting for LLDP..");
             }
 
             uint16_t len = w5500.readFrame(network_buffer, sizeof(network_buffer));

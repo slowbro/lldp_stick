@@ -95,7 +95,7 @@ void oled_menu::lbtn(){
 
         // when we try to go past the past the last menu item,
         // wrap around to the top
-        if(top+max_lines+1 > menu_table_size){
+        if(cursor_position+2 > menu_table_size){
             top = 1;
             cursor_position = 1;
         }

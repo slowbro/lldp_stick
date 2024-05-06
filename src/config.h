@@ -2,8 +2,8 @@
 #define CONFIG_H
 
 #define OLED_WIDTH 128
-#define OLED_HEIGHT 32
-#define OLED_LINES 4
+#define OLED_HEIGHT 64
+#define OLED_LINES 8
 #define OLED_MAXLEN 21
 
 #define DISPLAY_LINES OLED_LINES-2

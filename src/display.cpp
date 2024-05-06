@@ -18,13 +18,13 @@ Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT, &Wire, PIN_OLED_RESET);
 void display_init(){
     pinMode(PIN_OLED_RESET, OUTPUT);
 
-    display.begin(0x3C);
+    display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
     display.dim(settings.oled_dim);
 
     display.clearDisplay();
     display.setTextSize(1);
-    display.setCursor(32,16);
+    display.setCursor(32,32);
     display.setTextColor(WHITE);
     display.print(F("Booting..."));
     display.display();
@@ -235,7 +235,8 @@ void display_print(){
 void display_buffer_advance(){
     // reset the animation timer so newly added lines don't immediately start to animate
     display_last_animation = millis();
-    display_buffer_top++;
+    if(display_buffer_length() > OLED_LINES)
+        display_buffer_top++;
     if(display_buffer_top > display_buffer_length()-1)
         display_buffer_top = 0;
 }

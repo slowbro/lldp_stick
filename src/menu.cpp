@@ -9,7 +9,7 @@
 
 bool menu_active = false;
 
-oled_menu menu(&display, 4, 21);
+oled_menu menu(&display, OLED_LINES, OLED_MAXLEN);
 
 menu_item* menu_main[] = {
     new menu_item_header(),
@@ -54,7 +54,7 @@ void menu_ble_info(){
     else
         display.println("Disconnected");
 
-    display.setCursor(0,24);
+    display.setCursor(0, 56);
     display.println("< Back");
 }
 
@@ -70,7 +70,7 @@ void menu_device_info(){
     display.print(battery_voltage(), 2);
     display.println("v");
 
-    display.println();
+    display.setCursor(0, 56);
     display.println("< Back");
 }
 
@@ -81,7 +81,7 @@ void menu_settings_mac_address(){
     display.println(macstr);
     free(macstr);
     
-    display.setCursor(0, 24);
+    display.setCursor(0, 56);
     display.println("< Generate     Save >");
 }
 
@@ -105,7 +105,7 @@ void menu_settings_autosleep(){
         display.setCursor(42, 10);
         display.println("Never");
     }
-    display.setCursor(0, 24);
+    display.setCursor(0, 56);
     display.println("< Next         Save >");
 }
 
@@ -129,7 +129,7 @@ void menu_settings_scroll_speed(){
     } else {
         display.println("Fast");
     }
-    display.setCursor(0, 24);
+    display.setCursor(0, 56);
     display.println("< Next         Save >");
 }
 
@@ -154,7 +154,7 @@ void menu_settings_ble(){
     else
         display.println("No");
 
-    display.setCursor(0, 24);
+    display.setCursor(0, 56);
     display.println("< Toggle       Save >");
 }
 
@@ -176,7 +176,7 @@ void menu_settings_ble_wake(){
     else
         display.println("No");
 
-    display.setCursor(0, 24);
+    display.setCursor(0, 56);
     display.println("< Toggle       Save >");
 }
 
@@ -194,7 +194,7 @@ void menu_settings_oled_dim(){
     else
         display.println("No");
 
-    display.setCursor(0, 24);
+    display.setCursor(0, 56);
     display.println("< Toggle       Save >");
 }
 
