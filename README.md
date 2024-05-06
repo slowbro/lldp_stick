@@ -25,7 +25,7 @@ Requires `s132_nrf52_2.0.1_softdevice.hex` to be placed in `~/.platformio/packag
 
 1. Install [PlatformIO](https://platformio.org/).
 2. Clone the repository.
-3. See "Dependencies" above - download and copy the SoftDevice hex file to the proper location.
+3. See "Dependencies" above - download and copy the SoftDevice hex file to the proper location. You may need to try `pio run` first to download the apporiate libraries.
 4. Run platformio: `pio run`.
 5. To upload: plug in your J-Link (or other programmer) and run `pio run -t upload`.
 
@@ -36,7 +36,7 @@ You will need:
 - An 128x64 i2c OLED Display with a SSD1306 controller and FPC connector; I buy from [BuyDisplay](https://www.buydisplay.com/datasheet-128x64-oled-module-spi-0-96-inch-graphic-displays-white-on-black).
 - 2x Buttons for the top side: [KSC441JST1LFS at Mouser](https://www.mouser.com/ProductDetail/CK/KSC441JST1LFS?qs=8LLMQjkBYsII%252BtWfhZrIfA%3D%3D) - not available for assembly from JLC.
 - Dual-LED chip [LTST-C195KGJRKT at Mouser](https://mou.sr/4auO7dj)
-- A small LiPo battery such as DU LITER [LP902030](https://www.amazon.com/902030-Battery-Rechargeable-Lithium-Connector/dp/B09WN5GV53/) (550mAh), or DU LITER [802245](https://bihuade.com/products/37v-802245-1000mah-bihuade-lithium-polymer-rechargeable-battery-for-bluetooth-headset-speaker) (1000mAh).
+- A small LiPo battery such as DU LITER [902035](https://bihuade.com/products/902035-37v-600mah-liter-energy-battery-polymer-lithium-rechargeable-battery-for-mp3-gps-dvd-bluetooth-recorder-e-book-camera) (600mAh), or DU LITER [802245](https://bihuade.com/products/37v-802245-1000mah-bihuade-lithium-polymer-rechargeable-battery-for-bluetooth-headset-speaker) (1000mAh).
 - The 3D printed case.
 - 2x M4x2mm screws.
 
