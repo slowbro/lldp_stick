@@ -2,13 +2,13 @@
 
 ## Rev 6
 - Switch to cheaper HanRun RJ45 w/ integrated magnetics
-- Update battery monitoring voltage divider to add filter/stability capacitor and take advantage of more of the ADC range (thanks Adaruit)
+- Update battery monitoring voltage divider to add filter/stability capacitor and take advantage of more of the ADC range (thanks Adafruit)
 
 ## Rev 5
 - Much like IPv5, this doesn't really exist
 
 ## Rev 4
-- Switch to LDO + cheaper battery management chip for cost and energy savings (thanks Adafruit for the design borrowed from nRF52 Feathers)
+- Switch to LDO + cheaper battery management chip for cost and energy savings (thanks Adafruit for the design borrowed from [nRF52 Feathers](https://cdn-learn.adafruit.com/assets/assets/000/052/793/original/microcontrollers_revgsch.png?1523067417))
 - Re-add inductor for nRF52832 DC-DC Converter
 - Remove `SCL`/`SDA` test points
 
