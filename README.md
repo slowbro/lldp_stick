@@ -42,8 +42,8 @@ You will need:
 
 Steps:
 1. [Order your PCBs from JLCPCB](gerber/README.md) (or your manufacturer of choice - the part selection is such that assembly from JLC is turnkey). Continue once PCBs have arrived.
-2. Solder buttons onto the front (back?) of the PCB. Also solder the dual LED package if you opted to only have one side of the PCB assembled.
-3. Solder the OLED FPC connector.
+2. Solder the OLED FPC connector.
+3. Solder buttons onto the front (back?) of the PCB. Also solder the dual LED package if you opted to only have one side of the PCB assembled.
 4. Fold the OLED connector over, and superglue the OLED so that the top of the OLED panel is about flush with the top of the PCB.
 5. Flush-trim the RJ-45 connector pins.
 6. Program the board with your favorite SWD programmer. I use a J-LINK.
@@ -53,10 +53,11 @@ Steps:
 10. Slide the "lid" printed part into its slot on the back of the body of the case.
 
 ## Approximate Cost
+...assuming you're assembling 5 at a time:
 
 - PCB: $33.75 assembled (assuming top-side-only assembly, DHL shipping, JLCPCB, QTY 5)
-- Screen: $5
-- Battery: $10
+- Screen: $3.56
+- Battery: $6.40
 - Misc components (LED, buttons, screws, case): ~$4
 
-Total: $48.75
+Total: $47.71/ea
