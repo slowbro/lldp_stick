@@ -103,7 +103,7 @@ void sleep_autosleep(){
             
             if(millis() - last_animation > 500){
                 display.clearDisplay();
-                display.setCursor(14, 16);
+                display.setCursor(14, 32);
                 animation_pos++;
 
                 if(animation_pos > 17)
