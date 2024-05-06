@@ -10,6 +10,6 @@ extern bool got_lldp;
 extern Wiznet5500 w5500;
 
 void network_init();
-void network_generate_mac(byte *dest);
+void network_generate_mac(byte *);
 
 #endif

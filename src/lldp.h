@@ -52,7 +52,7 @@ struct TLV_Org {
 
 };
 
-void lldp_process(uint8_t *data, uint16_t len, PDUInfo *pinfo);
-void lldp_set_defaults(PDUInfo *pinfo);
+void lldp_process(uint8_t *, uint16_t, PDUInfo *);
+void lldp_set_defaults(PDUInfo *);
 
 #endif

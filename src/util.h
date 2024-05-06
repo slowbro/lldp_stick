@@ -6,7 +6,7 @@
 #define STRINGIFY2(X) #X
 #define STRINGIFY(X) STRINGIFY2(X)
 
-char *mac_to_char(byte mac[]);
-byte *char_to_mac(char *mac);
+char *mac_to_char(byte[]);
+byte *char_to_mac(char *);
 
 #endif
