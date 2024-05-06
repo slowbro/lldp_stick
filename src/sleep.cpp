@@ -33,6 +33,7 @@ void sleep_init_interrupts(){
  */
 void wake(){
     // we don't need the internal DCDC converter - disable it. saves ~1mA in sleep
+    // TODO: remove this for board rev 4+
     NRF_POWER->DCDCEN = 0;
 
     // wake up the peripherals
@@ -57,7 +58,7 @@ void sleep(){
     w5500.end();
     digitalWrite(PIN_WIZ_RESET, LOW);
 
-    // clear the display and reset the SD1306
+    // clear the display and reset the SSD1306
     display.clearDisplay();
     display.display();
     digitalWrite(PIN_OLED_RESET, LOW);
