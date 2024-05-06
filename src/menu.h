@@ -14,6 +14,7 @@ extern bool menu_active;
 void menu_init();
 void menu_toggle();
 void menu_deselect();
+void menu_print_footer(const char *);
 void menu_ble_info();
 void menu_device_info();
 void menu_settings_mac_address();

@@ -46,6 +46,18 @@ void menu_deselect(){
     menu.deselect();
 }
 
+void menu_print_footer(const char *left, const char *right){
+    if(left != NULL){
+        display.setCursor(0, 56);
+        display.println(left);
+    }
+
+    if(right != NULL){
+        display.setCursor(OLED_WIDTH-(strlen(right)*6), 56);
+        display.println(right);
+    }
+}
+
 void menu_ble_info(){
     display.println(ble_id);
     display.print("Status: ");
@@ -54,8 +66,7 @@ void menu_ble_info(){
     else
         display.println("Disconnected");
 
-    display.setCursor(0, 56);
-    display.println("< Back");
+    menu_print_footer("< Back", NULL);
 }
 
 void menu_device_info(){
@@ -70,8 +81,7 @@ void menu_device_info(){
     display.print(battery_voltage(), 2);
     display.println("v");
 
-    display.setCursor(0, 56);
-    display.println("< Back");
+    menu_print_footer("< Back", NULL);
 }
 
 void menu_settings_mac_address(){
@@ -81,8 +91,7 @@ void menu_settings_mac_address(){
     display.println(macstr);
     free(macstr);
     
-    display.setCursor(0, 56);
-    display.println("< Generate     Save >");
+    menu_print_footer("< Generate", "Save >");
 }
 
 void menu_settings_mac_address_lbtn(){
@@ -105,8 +114,8 @@ void menu_settings_autosleep(){
         display.setCursor(42, 10);
         display.println("Never");
     }
-    display.setCursor(0, 56);
-    display.println("< Next         Save >");
+
+    menu_print_footer("< Next", "Save >");
 }
 
 void menu_settings_autosleep_lbtn(){
@@ -129,8 +138,8 @@ void menu_settings_scroll_speed(){
     } else {
         display.println("Fast");
     }
-    display.setCursor(0, 56);
-    display.println("< Next         Save >");
+
+    menu_print_footer("< Next", "Save >");
 }
 
 void menu_settings_scroll_speed_lbtn(){
@@ -154,8 +163,7 @@ void menu_settings_ble(){
     else
         display.println("No");
 
-    display.setCursor(0, 56);
-    display.println("< Toggle       Save >");
+    menu_print_footer("< Toggle", "Save >");
 }
 
 void menu_settings_ble_lbtn(){
@@ -176,8 +184,7 @@ void menu_settings_ble_wake(){
     else
         display.println("No");
 
-    display.setCursor(0, 56);
-    display.println("< Toggle       Save >");
+    menu_print_footer("< Toggle", "Save >");
 }
 
 void menu_settings_ble_wake_lbtn(){
@@ -194,8 +201,7 @@ void menu_settings_oled_dim(){
     else
         display.println("No");
 
-    display.setCursor(0, 56);
-    display.println("< Toggle       Save >");
+    menu_print_footer("< Toggle", "Save >");
 }
 
 void menu_settings_oled_dim_lbtn(){
