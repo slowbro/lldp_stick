@@ -3,6 +3,7 @@
 ## Rev 6
 - Switch to cheaper HanRun RJ45 w/ integrated magnetics
 - Update battery monitoring voltage divider to add filter/stability capacitor and take advantage of more of the ADC range (thanks Adafruit)
+- Add 5.1k resisor to `CC1`/`CC2` lines on USB-C connector to properly negotiate 5V
 
 ## Rev 5
 - Much like IPv5, this doesn't really exist
