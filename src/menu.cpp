@@ -108,10 +108,10 @@ void menu_settings_autosleep(){
     display.setCursor(0,0);
     display.println("Autosleep Seconds:");
     if(settings.autosleep != 0){
-        display.setCursor(50, 10);
+        display.setCursor(50, 20);
         display.println(settings.autosleep);
     } else {
-        display.setCursor(42, 10);
+        display.setCursor(42, 20);
         display.println("Never");
     }
 
@@ -130,7 +130,7 @@ void menu_settings_autosleep_lbtn(){
 void menu_settings_scroll_speed(){
     display.setCursor(0,0);
     display.println("Text Scroll Speed:");
-    display.setCursor(40, 10);
+    display.setCursor(40, 20);
     if(settings.text_scroll_multiplier == 2.0){
         display.println("Slow");
     } else if(settings.text_scroll_multiplier == 1.0){
@@ -157,7 +157,7 @@ void menu_settings_scroll_speed_lbtn(){
 void menu_settings_ble(){
     display.println("Disable BLE?");
 
-    display.setCursor(50, 10);
+    display.setCursor(50, 20);
     if(settings.ble_disable)
         display.println("Yes");
     else
@@ -178,7 +178,7 @@ void menu_settings_ble_lbtn(){
 void menu_settings_ble_wake(){
     display.println("Stay Awake on BLE?");
 
-    display.setCursor(50, 10);
+    display.setCursor(50, 20);
     if(settings.ble_keep_awake)
         display.println("Yes");
     else
@@ -195,7 +195,7 @@ void menu_settings_ble_wake_lbtn(){
 void menu_settings_oled_dim(){
     display.println("Dim OLED?");
 
-    display.setCursor(50, 10);
+    display.setCursor(50, 20);
     if(settings.oled_dim)
         display.println("Yes");
     else
