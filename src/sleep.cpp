@@ -32,10 +32,6 @@ void sleep_init_interrupts(){
  *
  */
 void wake(){
-    // we don't need the internal DCDC converter - disable it. saves ~1mA in sleep
-    // TODO: remove this for board rev 4+
-    NRF_POWER->DCDCEN = 0;
-
     // wake up the peripherals
     pinMode(PIN_PERIPH, OUTPUT);
     digitalWrite(PIN_PERIPH, LOW);
