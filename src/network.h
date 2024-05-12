@@ -2,7 +2,7 @@
 #define NETWORK_H
 
 #include <Arduino.h>
-#include <w5500.h>
+#include <network/w5500.h>
 
 extern uint8_t network_buffer[1500];
 extern bool got_lldp;
