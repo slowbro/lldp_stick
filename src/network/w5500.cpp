@@ -284,7 +284,7 @@ boolean Wiznet5500::begin(const uint8_t *mac_address)
     return true;
 }
 
-void Wiznet5500::change_mac_address(uint8_t *mac_address){
+void Wiznet5500::change_mac_address(const uint8_t *mac_address){
     end();
     begin(mac_address);
 }

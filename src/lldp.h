@@ -7,7 +7,7 @@
 struct PDUInfo {
 
     // the packet
-    uint8_t data[1514]
+    uint8_t data[1514];
 
     // TLV 1: Chassis ID
     uint16_t ChassisIdStart;

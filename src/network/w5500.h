@@ -64,7 +64,7 @@ public:
      *
      * @param address the local MAC address for the Ethernet interface
     */
-    void change_mac_address(uint8_t *address);
+    void change_mac_address(const uint8_t *address);
 
     /**
      * Shut down the Ethernet controlled
