@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <network/w5500.h>
 
-extern uint8_t network_buffer[1500];
+extern uint8_t network_buffer[1514];
 extern bool got_lldp;
 
 extern Wiznet5500 w5500;

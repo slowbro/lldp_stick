@@ -3,7 +3,7 @@
 #include "config.h"
 
 byte network_mac[6];
-uint8_t network_buffer[1500];
+uint8_t network_buffer[1514];
 bool got_lldp = false;
 
 Wiznet5500 w5500(PIN_WIZ_CS);
