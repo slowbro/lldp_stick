@@ -259,9 +259,7 @@ boolean Wiznet5500::begin(const uint8_t *mac_address)
     wizchip_cs_deselect();
 
     SPI.begin();
-    SPI.setClockDivider(SPI_CLOCK_DIV4); // 4 MHz?
-    SPI.setBitOrder(MSBFIRST);
-    SPI.setDataMode(SPI_MODE0);
+    SPI.beginTransaction(SPISettings(30000000, MSBFIRST, SPI_MODE0));
 
     wizchip_sw_reset();
 
