@@ -37,7 +37,8 @@ You will need:
 - The PCB; you can order this from JLCPCB assembled using the included gerber/bom/placement files.
 - An 128x64 i2c OLED Display with a SSD1306 controller and FPC connector; I buy from [BuyDisplay](https://www.buydisplay.com/datasheet-128x64-oled-module-spi-0-96-inch-graphic-displays-white-on-black).
 - 2x Buttons for the top side: [KSC441JST1LFS at Mouser](https://www.mouser.com/ProductDetail/CK/KSC441JST1LFS?qs=8LLMQjkBYsII%252BtWfhZrIfA%3D%3D) - not available for assembly from JLC.
-- Dual-LED chip [LTST-C195KGJRKT at Mouser](https://mou.sr/4auO7dj)
+- RJ45 Jack (if JLC will not assemble it for you) HANRUN [HR911105A at LCSC](https://www.lcsc.com/product-detail/Ethernet-Connectors-Modular-Connectors-RJ45-RJ11_HANRUN-Zhongshan-HanRun-Elec-HR911105A_C12074.html)
+- LED chip [XL-2012SURC at LCSC](https://www.lcsc.com/product-detail/LED-Indication-Discrete_XINGLIGHT-XL-2012SURC_C965812.html)
 - A small LiPo battery such as DU LITER [902035](https://bihuade.com/products/902035-37v-600mah-liter-energy-battery-polymer-lithium-rechargeable-battery-for-mp3-gps-dvd-bluetooth-recorder-e-book-camera) (600mAh), or DU LITER [802245](https://bihuade.com/products/37v-802245-1000mah-bihuade-lithium-polymer-rechargeable-battery-for-bluetooth-headset-speaker) (1000mAh), with JST PH 2.0mm 2-pin connector.
 - The 3D printed case.
 - 2x M4x2mm screws.
