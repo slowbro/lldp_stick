@@ -1,5 +1,11 @@
 # v3 PCB Changelog
 
+## Rev 7
+- Add support for USB-C DAM (Debug Accessory Mode) - SWD via the USB-C connector! See https://github.com/alvarop/swd2usbc
+- switch the gnd for VDIV (VDIV_EN) so as to not waste power when the MCU is asleep
+- Update a couple of components that were no longer available through JLCPCB/LCSC: L3, C9, C14
+- Replace double-LED package for indicator with single-LED package
+
 ## Rev 6
 - Switch to cheaper HanRun RJ45 w/ integrated magnetics
 - Update battery monitoring voltage divider to add filter/stability capacitor and take advantage of more of the ADC range (thanks Adafruit)
