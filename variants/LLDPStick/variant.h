@@ -120,6 +120,7 @@ static const uint8_t SCL = PIN_WIRE_SCL;
 #define PIN_LBTN 22
 #define PIN_RBTN 6
 #define PIN_VDIV 31
+#define PIN_VDIV_EN 30
 
 
 #ifdef __cplusplus

@@ -8,6 +8,9 @@ uint32_t battery_last_read = 0;
 
 void battery_init(){
     pinMode(PIN_VDIV, INPUT);
+    pinMode(PIN_VDIV_EN, INPUT);
+    digitalWrite(PIN_VDIV_EN, LOW);
+
     // force a read of the battery
     battery_reading = analogRead(PIN_VDIV);
 }
