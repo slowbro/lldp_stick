@@ -44,16 +44,17 @@ You will need:
 - 2x M4x2mm screws.
 
 Steps:
-1. [Order your PCBs from JLCPCB](gerber/README.md) (or your manufacturer of choice - the part selection is such that assembly from JLC is turnkey). Continue once PCBs have arrived.
-2. Solder the OLED FPC connector.
-3. Solder buttons onto the front (back?) of the PCB. Also solder the dual LED package if you opted to only have one side of the PCB assembled.
-4. Fold the OLED connector over, and superglue the OLED so that the top of the OLED panel is about flush with the top of the PCB.
-5. Flush-trim the RJ-45 connector pins.
-6. Program the board with your favorite SWD programmer. I use a J-LINK.
-7. 3D print the case - body and one of the lids. Use the development lid if you plan on developing the board, as it will let you hang a SWD connector out the back.
-8. Angle the RJ45 side of the board into the case, and then push down on the USB-C end to fit the PCB into the case. Secure with 1-2 M2x4mm screws.
-9. Plug in the battery and (ideally) hotglue it in place in the case.
-10. Slide the "lid" printed part into its slot on the back of the body of the case.
+1. [Order your PCBs from JLCPCB](gerber/lldpstick/README.md) (or your manufacturer of choice - the part selection is such that assembly from JLC is turnkey). Continue once PCBs have arrived.
+2. (optional) [Order Programmer PCBs from JLCPCB](gerber/programmer/README.md).
+3. Solder the OLED FPC connector.
+4. Solder buttons onto the front (back?) of the PCB. Also solder the LED if you opted to only have one side of the PCB assembled.
+5. Fold the OLED connector over, and superglue the OLED so that the top of the OLED panel is about flush with the top of the PCB.
+6. Solder on and lush-trim the RJ-45 connector pins.
+7. Program the board with your favorite SWD programmer. I use a J-LINK. This can be done via the exposed pads or the USBC-DAM programmer.
+8. 3D print the case - body and one of the lids. Use the development lid if you plan on developing the board, as it will let you hang a SWD connector out the back.
+9. Angle the RJ45 side of the board into the case, and then push down on the USB-C end to fit the PCB into the case. Secure with 1-2 M2x4mm screws.
+10. Plug in the battery and (ideally) hotglue it in place in the case.
+11. Slide the "lid" printed part into its slot on the back of the body of the case.
 
 ## Approximate Cost
 ...assuming you're assembling 5 at a time:
