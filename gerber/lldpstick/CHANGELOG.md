@@ -1,5 +1,10 @@
 # v3 PCB Changelog
 
+## Rev 7.3
+- Power I2C pullups from 3V3DSW to save ~150uA of vampire drain in sleep
+- Undo the VDIV_EN - it's not going to drain very much and connecting it like that kills the ADC range
+- Remove pogopin programming pads
+
 ## Rev 7
 - Add support for USB-C DAM (Debug Accessory Mode) - SWD via the USB-C connector! See https://github.com/alvarop/swd2usbc
 - switch the gnd for VDIV (VDIV_EN) so as to not waste power when the MCU is asleep

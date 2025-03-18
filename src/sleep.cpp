@@ -36,9 +36,6 @@ void wake(){
     pinMode(PIN_PERIPH, OUTPUT);
     digitalWrite(PIN_PERIPH, LOW);
 
-    // enable the voltage divider for battery sensing
-    digitalWrite(PIN_VDIV_EN, LOW);
-
     delay(200);
 }
 
@@ -65,9 +62,6 @@ void sleep(){
 
     // disable power to peripherals
     digitalWrite(PIN_PERIPH, HIGH);
-
-    // disable the voltage divider for battery sensing
-    digitalWrite(PIN_VDIV_EN, HIGH);
 
     // delay to stop any button press keeping the device awake
     // when sleeping manually (i.e. from the menu)
