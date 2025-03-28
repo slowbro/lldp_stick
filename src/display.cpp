@@ -154,19 +154,19 @@ void display_set_header(){
     display.fillRect(display.width()-2, 3, 1, 1, BLACK);
 
     // battery bars
-    if(battery_reading >= 585) { // 3.4v
+    if(battery_reading >= 550) { // 3.2v
         display.fillRect(display.width()-18, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 636) { // 3.7v
+    if(battery_reading >= 601) { // 3.5v
         display.fillRect(display.width()-14, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 671) { // 3.9v
+    if(battery_reading >= 653) { // 3.8v
         display.fillRect(display.width()-10, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 696) { // 4.05v
+    if(battery_reading >= 687) { // 4v
         display.fillRect(display.width()-6, 2, 2, 3, WHITE);
     }
 }
