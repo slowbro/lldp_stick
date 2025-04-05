@@ -15,7 +15,8 @@ A network diagnostic tool. Initial goal is to show LLDP information; future goal
 - [x] Reduce idle power draw (and thus improve battery life)
     - Rev 0 34mA
     - Rev 2 7mA
-    - Rev 3 150uA!
+    - Rev 3 150uA
+    - Rev 7+ 24uA!
 - [ ] 1G PHY: Support switches that don't go down to 100M (i.e. Arista DCS-7280TR)
 - [ ] Cost reduction: $20-$30 per stick
 

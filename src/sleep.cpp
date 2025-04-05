@@ -60,6 +60,11 @@ void sleep(){
     display.display();
     digitalWrite(PIN_OLED_RESET, LOW);
 
+    // explicitly disable I2C interface + set pins to input to save ~100uA
+    NRF_TWI1->ENABLE = TWI_ENABLE_ENABLE_Disabled << TWI_ENABLE_ENABLE_Pos;
+    pinMode(SCL, INPUT);
+    pinMode(SDA, INPUT);
+
     // disable power to peripherals
     digitalWrite(PIN_PERIPH, HIGH);
 
