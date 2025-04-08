@@ -42,11 +42,7 @@ void game_snake_run(){
 void game_snake_tick(){
     // only redraw/recalc every 100ms
     if(millis()-last_tick > 100){
-        // move
-        // 0 = up = pos-64
-        // 1 = right pos+1 kinda
-        // 2 = down = pos+64
-        // 3 = left = pos-1 kinda
+        // move head
         switch(direction){
             case 0: // up
                 if(head < 64){
