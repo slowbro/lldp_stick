@@ -91,14 +91,18 @@ void game_snake_tick(){
             score++;
             do {
                 pip = random(0, 2047);
+                // don't place the pip where the head is
                 if(pip == head)
                     continue;
+
+                // don't place the pip inside the snake
                 bool ok = true;
                 for(uint16_t i=0;i<2048;i++){
                     if(snake[i] == pip){
                         ok = false;
                         break;
                     }
+                    // we reached the end of the snake without collision, use this spot
                     if(snake[i] == '\0')
                         break;
                 }
@@ -107,7 +111,7 @@ void game_snake_tick(){
             } while(1==1);
         }
 
-        // recalculate the snake
+        // recalculate the snake (i.e. 'move' it on screen)
         if(score>1){
             for(uint16_t i = score-1;i>0;i--){
                 snake[i] = snake[i-1];
@@ -122,7 +126,6 @@ void game_snake_tick(){
                 game_snake_gameover();
             }
         }
-
 
         game_snake_draw();
         last_tick = millis();
