@@ -25,7 +25,7 @@ void game_snake_init(){
     randomSeed(analogRead(PIN_VDIV));
     do {
         pip = random(0, 2047);
-    } while(pip == 1023);
+    } while(pip == head);
 
     // draw the initial field
     game_snake_draw();
