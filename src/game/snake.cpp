@@ -75,9 +75,11 @@ void game_snake_tick(){
                 break;
 
             case 3: // left
-                if(head%64 == 1){
+                if(head%64 == 0 && head != 0){
                     //wrap
                     head += 63;
+                } else if(head == 0){
+                    head = 64;
                 }
                 --head;
                 break;
