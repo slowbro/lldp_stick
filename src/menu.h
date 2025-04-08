@@ -34,6 +34,7 @@ void menu_settings_save();
 
 extern menu_item* menu_main[];
 extern menu_item* menu_settings[];
+extern menu_item* menu_games[];
 extern oled_menu menu;
 
 #endif

@@ -7,12 +7,17 @@ void oled_menu::draw_menu(){
     display->setCursor(0, 0);
 
     if(selected_item == -1){
+        // draw the menu items if nothing is selected
         for(uint8_t i = top; i <= top+max_lines-1; i++){
             menu_item *item = menu_table[i];
 
             // skip nonexistant items (i.e. item count < max_lines)
-            if(item == NULL || item->get_type() == MENU_ITEM_END_OF_MENU)
+            if(item == NULL)
                 continue;
+                
+            // end processing when we get to the end of the menu
+            if(item->get_type() == MENU_ITEM_END_OF_MENU)
+                break;
 
             const char *text = item->get_text();
             if(text != NULL){

@@ -6,6 +6,7 @@
 #include "network.h"
 #include "ble.h"
 #include "config.h"
+#include "game.h"
 
 bool menu_active = false;
 
@@ -15,6 +16,7 @@ menu_item* menu_main[] = {
     new menu_item_header(),
     new menu_item_display("BLE Info", menu_ble_info, menu_deselect, NULL),
     new menu_item_display("Device Info", menu_device_info, menu_deselect, NULL),
+    new menu_item_submenu("Games", 3, menu_games),
     new menu_item_submenu("Settings", 9, menu_settings),
     new menu_item_command("Poweroff", sleep),
     new menu_item_command("Back", menu_toggle),
@@ -33,8 +35,15 @@ menu_item* menu_settings[] = {
     new menu_item_footer("< Next       Select >")
 };
 
+menu_item* menu_games[] = {
+    new menu_item_header(),
+    new menu_item_command("Snake", game_snake_run),
+    new menu_item_back("Back", NULL),
+    new menu_item_footer("< Next       Select >")
+};
+
 void menu_init(){
-    menu.set_menu(7, menu_main);
+    menu.set_menu(8, menu_main);
 }
 
 void menu_toggle(){
