@@ -16,7 +16,7 @@ menu_item* menu_main[] = {
     new menu_item_header(),
     new menu_item_display("BLE Info", menu_ble_info, menu_deselect, NULL),
     new menu_item_display("Device Info", menu_device_info, menu_deselect, NULL),
-    new menu_item_submenu("Games", 3, menu_games),
+    new menu_item_submenu("Games", 4, menu_games),
     new menu_item_submenu("Settings", 9, menu_settings),
     new menu_item_command("Poweroff", sleep),
     new menu_item_command("Back", menu_toggle),
