@@ -1,8 +1,4 @@
 #include "button.h"
-#include "sleep.h"
-#include "config.h"
-#include <stdint.h>
-#include <Arduino.h>
 
 int lbtn_reading, rbtn_reading, lbtn_last, rbtn_last;
 uint32_t last_debounce_lbtn, last_debounce_rbtn = 0;

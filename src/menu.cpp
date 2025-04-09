@@ -1,12 +1,4 @@
 #include "menu.h"
-#include "sleep.h"
-#include "setting.h"
-#include "battery.h"
-#include "util.h"
-#include "network.h"
-#include "ble.h"
-#include "config.h"
-#include "game.h"
 
 bool menu_active = false;
 

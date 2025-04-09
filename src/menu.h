@@ -8,6 +8,14 @@
 #include "menu/menu_item_display.h"
 #include "menu/menu_item_submenu.h"
 #include "menu/menu_item_back.h"
+#include "battery.h"
+#include "ble.h"
+#include "config.h"
+#include "game.h"
+#include "network.h"
+#include "setting.h"
+#include "sleep.h"
+#include "util.h"
 
 extern bool menu_active;
 

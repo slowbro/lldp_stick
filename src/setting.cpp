@@ -1,8 +1,4 @@
 #include "setting.h"
-#include <EEPROM.h>
-#include "network.h"
-#include "ble.h"
-#include "config.h"
 
 Settings settings;
 bool setting_needs_save = false;

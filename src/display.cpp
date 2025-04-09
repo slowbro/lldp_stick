@@ -1,8 +1,4 @@
 #include "display.h"
-#include "battery.h"
-#include "ble.h"
-#include "setting.h"
-#include "config.h"
 
 char *display_buffer[8];
 int display_line_start[8] = {0};

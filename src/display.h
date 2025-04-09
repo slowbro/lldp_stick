@@ -4,6 +4,10 @@
 #include "stdint.h"
 #include <Adafruit_SSD1306.h>
 #include <Wire.h>
+#include "battery.h"
+#include "ble.h"
+#include "setting.h"
+#include "config.h"
 
 extern Adafruit_SSD1306 display;
 

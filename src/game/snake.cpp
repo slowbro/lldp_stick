@@ -1,7 +1,4 @@
 #include "game/snake.h"
-#include <stdint.h>
-#include "button.h"
-#include "display.h"
 
 uint16_t snake[2048];
 uint16_t head;
@@ -19,7 +16,7 @@ void game_snake_init(){
     head = 15*64+32;
     snake[0] = head;
     score = 1;
-    direction = 1;
+    direction = 0;
 
     // place the pip in a random location that is not coincident with the start position
     randomSeed(analogRead(PIN_VDIV));

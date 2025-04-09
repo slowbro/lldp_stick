@@ -1,11 +1,4 @@
 #include "sleep.h"
-#include "display.h"
-#include "button.h"
-#include "ble.h"
-#include "network.h"
-#include "setting.h"
-#include "config.h"
-#include <Arduino_nRF5x_lowPower.h>
 
 uint32_t sleep_last_action = millis();
 

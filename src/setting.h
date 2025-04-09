@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include <Arduino.h>
 #include <EEPROM.h>
+#include "network.h"
+#include "ble.h"
+#include "config.h"
 
 #define SETTING_VERSION 7
 

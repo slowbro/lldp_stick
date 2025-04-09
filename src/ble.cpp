@@ -1,14 +1,6 @@
 #include "ble.h"
-#include "network.h"
-#include "battery.h"
-#include "util.h"
-#include "nrf_nvic.h"
-#include "nrf_soc.h"
-#include "setting.h"
-#include "sleep.h"
-#include "util.h"
-#include <BLEPeripheral.h>
 
+// set the BLE identifier at compile-time
 const char *ble_id = "LLDP Stick " STRINGIFY(BLE_ID);
 bool ble_connected = false;
 
@@ -16,12 +8,15 @@ bool ble_connected = false;
 // for use with radio notification
 nrf_nvic_state_t nrf_nvic_state;
 
+// THE peripheral
 BLEPeripheral                ble_peripheral = BLEPeripheral();
 
+// MAC Address
 BLEService                   ble_mac_service        = BLEService("fff0");
 BLEFixedLengthCharacteristic ble_mac_characteristic = BLEFixedLengthCharacteristic("fff1", BLERead | BLEWrite, 17);
 BLEDescriptor                ble_mac_descriptor     = BLEDescriptor("2901", "MAC Address");
 
+//Battery Voltage
 BLEService                   ble_battery_service        = BLEService("ddd0");
 BLEFloatCharacteristic       ble_battery_characteristic = BLEFloatCharacteristic("ddd1", BLERead);
 BLEDescriptor                ble_battery_descriptor     = BLEDescriptor("2901", "Battery Voltage");

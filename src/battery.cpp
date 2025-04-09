@@ -1,7 +1,4 @@
-#include <Arduino.h>
 #include "battery.h"
-#include "ble.h"
-#include "config.h"
 
 int battery_reading = 0;
 uint32_t battery_last_read = 0;

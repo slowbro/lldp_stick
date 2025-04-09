@@ -1,6 +1,14 @@
 #ifndef BLE_H
 #define BLE_H
 
+#include "network.h"
+#include "battery.h"
+#include "util.h"
+#include "nrf_nvic.h"
+#include "nrf_soc.h"
+#include "setting.h"
+#include "sleep.h"
+#include "util.h"
 #include <BLEPeripheral.h>
 
 extern bool ble_connected;
