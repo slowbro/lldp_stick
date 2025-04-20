@@ -23,7 +23,7 @@ void lldp_process(uint8_t *data, uint16_t len, PDUInfo *pinfo) {
         tlv_type = tlv >> 9;
 
         // last 9 bits are the TLV length
-        tlv_len =    tlv & 0b0000000111111111;
+        tlv_len = tlv & 0b0000000111111111;
 
         //skip the type-length header altogether, putting 'pos' at the start of the value
         pos+=2;

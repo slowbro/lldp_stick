@@ -1,5 +1,6 @@
 #include "util.h"
 
+// convert a given byte array of mac address octets to a char representation (de:ad:be:ef:ca:fe)
 char *mac_to_char(byte mac[]){
     char *macstr = (char *)malloc(18);
 
@@ -15,6 +16,7 @@ char *mac_to_char(byte mac[]){
     return macstr;
 }
 
+// convert a given char representation (de:ad:be:ef:ca:fe) to a byte array
 byte *char_to_mac(char *mac){
     unsigned int imac[6];
     byte *macbytes = (byte *)malloc(sizeof(byte)*6);
