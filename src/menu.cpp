@@ -1,5 +1,6 @@
 #include "menu.h"
 
+const char *git_rev = STRINGIFY(GIT_REV);
 bool menu_active = false;
 
 oled_menu menu(&display, OLED_LINES, OLED_MAXLEN);
@@ -81,6 +82,8 @@ void menu_device_info(){
     display.print("Battery: ");
     display.print(battery_voltage(), 2);
     display.println("v");
+    display.print("Firmware: ");
+    display.println(git_rev);
 
     menu_print_footer("< Back", NULL);
 }

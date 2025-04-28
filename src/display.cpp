@@ -150,19 +150,20 @@ void display_set_header(){
     display.fillRect(display.width()-2, 3, 1, 1, BLACK);
 
     // battery bars
-    if(battery_reading >= 550) { // 3.2v
+    float bv = battery_voltage();
+    if(bv > 3.2) {
         display.fillRect(display.width()-18, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 601) { // 3.5v
+    if(bv > 3.5) {
         display.fillRect(display.width()-14, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 653) { // 3.8v
+    if(bv > 3.8) {
         display.fillRect(display.width()-10, 2, 2, 3, WHITE);
     }
 
-    if(battery_reading >= 687) { // 4v
+    if(bv > 4.0) {
         display.fillRect(display.width()-6, 2, 2, 3, WHITE);
     }
 }
