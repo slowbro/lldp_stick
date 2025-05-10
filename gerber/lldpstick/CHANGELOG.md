@@ -1,5 +1,9 @@
 # v3 PCB Changelog
 
+## Rev 8
+- New battery management IC
+- Remove buggy battery protection circuit in favor of said BMIC
+
 ## Rev 7.3
 - Power I2C pullups from 3V3DSW to save ~150uA of vampire drain in sleep
 - Undo the VDIV_EN - it's not going to drain very much and connecting it like that kills the ADC range
